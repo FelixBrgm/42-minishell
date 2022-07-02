@@ -31,7 +31,7 @@ OFILES := $(CFILES:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OFILES)
-	$(CC) $(OFILES) -L/Users/fbruggem/goinfre/.brew/opt/readline/lib -I/Users/fbruggem/goinfre/.brew/opt/readline/include/readline -lreadline -o $(NAME) 
+	$(CC) $(OFILES) -L/Users/$(USER)/goinfre/.brew/opt/readline/lib -iquote /Users/$(USER)/goinfre/.brew/opt/readline/include/readline/ -lreadline -o $(NAME) 
 
 clean: 
 	$(RM) $(OFILES)

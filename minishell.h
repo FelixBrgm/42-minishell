@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:15:45 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/02 16:44:56 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/02 17:04:19 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define MINISHELL_H
 
 #include <stdlib.h>
-#include "/Users/fbruggem/goinfre/.brew/opt/readline/include/readline/history.h"
-#include "/Users/fbruggem/goinfre/.brew/opt/readline/include/readline/readline.h"
+#include "readline/history.h"
+#include "readline/readline.h"
 
 typedef struct s_child
 {
