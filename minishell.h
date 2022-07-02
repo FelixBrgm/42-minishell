@@ -6,47 +6,46 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:15:45 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/02 17:35:21 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/02 17:39:30 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <dirent.h>
-#include <unistd.h>
-#include <limits.h>
-#include <signal.h>
-#include <termios.h>
-#include "readline/history.h"
-#include "readline/readline.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <dirent.h>
+# include <unistd.h>
+# include <limits.h>
+# include <signal.h>
+# include <termios.h>
+# include "readline/history.h"
+# include "readline/readline.h"
 
 typedef struct s_child
 {
-    char    **cmd;
-    char    **shell;
-    int     fd_in;
-    int     fd_out;
-    char    *file_in;
-    char    *file_out;
-    char    *limiter;
-}               t_child;
+	char	**cmd;
+	char	**shell;
+	int		fd_in;
+	int		fd_out;
+	char	*file_in;
+	char	*file_out;
+	char	*limiter;
+}				t_child;
 
 typedef struct s_global
 {
-    // CONFIG
-    char            *promt;
-    int             interactive_mode;
-    char            **env;
+	// CONFIG
+	char			*promt;
+	int				interactive_mode;
+	char			**env;
 	struct termios	old_termios;
-    //Runtime
-    char            *input;
-    t_child         *children;
-} 					t_global;
-
+	//Runtime
+	char			*input;
+	t_child			*children;
+}				t_global;
 
 void	set_to_default(t_global	*global);
 
