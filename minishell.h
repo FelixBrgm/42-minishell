@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:15:45 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/02 17:32:40 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/02 17:35:21 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_global
     char            *promt;
     int             interactive_mode;
     char            **env;
-	srtuct termios	old_termios;
+	struct termios	old_termios;
     //Runtime
     char            *input;
     t_child         *children;
