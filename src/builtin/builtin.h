@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:25:31 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/03 17:10:25 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/03 19:04:14 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ int	builtin_exec(char **cmd, char **env);
 
 // Shell Commands
 int	builtin_echo(char **cmd, char ** env);
+int	builtin_echo_n(char **cmd, char ** env);
 
 #endif
