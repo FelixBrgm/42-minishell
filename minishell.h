@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:15:45 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/03 15:54:54 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/03 16:04:41 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ typedef struct s_child
 	int		fd_in;
 	int		fd_out;
 	char	*file_in;
-	char	*file_out;
+	char	*file_out_trunc;
+	char	*fule_out_app;
 	char	*limiter;
 }				t_child;
 
