@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:25:31 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/03 17:07:51 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/03 19:05:36 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../builtin/builtin.h"
 
 int		child_exec(t_child *child, char **env);
-void	limiter_exec(t_child *child);
+int		limiter_exec(t_child *child);
 void	children_free(t_global *global);
 
 #endif
