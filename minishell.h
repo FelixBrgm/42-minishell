@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:15:45 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/03 15:23:43 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/03 15:27:29 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_global
 	struct termios	old_termios;
 	//Runtime
 	char			*input;
-	t_child			*children;
+	t_child			**children;
 }				t_global;
 
 void	set_to_default(t_global	*global);
