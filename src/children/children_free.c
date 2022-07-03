@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:26:12 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/02 16:26:30 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/03 15:40:48 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 
 void	children_free(t_global *global)
 {
-	if (!global)
-		exit(0);
+	
 }

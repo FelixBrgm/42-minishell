@@ -16,7 +16,7 @@ INPUTCFILES := $(addprefix $(INPUT), $(INPUTCFILES))
 INPUTCFILES := $(addprefix $(SRC), $(INPUTCFILES))
 
 # CHILDREN
-CHILDRENCFILES := children_exec.c children_free.c
+CHILDRENCFILES := children_exec.c child_exec.c children_free.c
 CHILDRENCFILES := $(addprefix $(CHILDREN), $(CHILDRENCFILES))
 CHILDRENCFILES := $(addprefix $(SRC), $(CHILDRENCFILES))
 
