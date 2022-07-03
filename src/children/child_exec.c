@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 15:34:17 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/03 16:13:08 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/03 17:04:24 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,11 @@ int	child_exec(t_child *child, char **env)
 		child_exec_set_file_out_app_fd(child->file_out_app);
 	if (child->limiter)
 		limiter_exec(child);
+	else if(builtin_is_cmd(child->cmd, env))
+		builtin_exec(child->cmd, env);
 	else
 		execve(child->cmd[0], child->cmd, env);
+	exit(1);
 }
 
 int	child_exec_set_file_in_fd(char *file)

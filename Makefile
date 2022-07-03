@@ -8,6 +8,7 @@ RM = rm -rf
 SRC := src/
 INPUT := input/
 CHILDREN := children/
+BUILTIN := builtin/
 
 
 # INPUT
@@ -20,12 +21,17 @@ CHILDRENCFILES := children_exec.c child_exec.c children_free.c
 CHILDRENCFILES := $(addprefix $(CHILDREN), $(CHILDRENCFILES))
 CHILDRENCFILES := $(addprefix $(SRC), $(CHILDRENCFILES))
 
+# BUILTIN
+BUILTINCFILES := builtin_exec.c builtin_is_cmd.c builtin_echo.c
+BUILTINCFILES := $(addprefix $(BUILTIN), $(BUILTINCFILES))
+BUILTINCFILES := $(addprefix $(SRC), $(BUILTINCFILES))
 
+# SPEC
 CFILES := global_free.c set_to_default.c
 CFILES := $(addprefix $(SRC), $(CFILES))
 
 # ALL
-CFILES := $(CFILES) $(INPUTCFILES) $(CHILDRENCFILES) minishell.c
+CFILES := $(CFILES) $(INPUTCFILES) $(CHILDRENCFILES) $(BUILTINCFILES) minishell.c
 OFILES := $(CFILES:.c=.o)
 
 all: $(NAME)

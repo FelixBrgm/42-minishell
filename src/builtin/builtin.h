@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   children.h                                         :+:      :+:    :+:   */
+/*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:25:31 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/03 17:07:51 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/03 17:10:25 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_CHIDLREN_H
-# define MINISHELL_CHIDLREN_H
+#ifndef MINISHELL_BUILTIN_H
+# define MINISHELL_BUILTIN_H
 
-# include "../../minishell.h"
-# include "../builtin/builtin.h"
+#include "../../minishell.h"
 
-int		child_exec(t_child *child, char **env);
-void	limiter_exec(t_child *child);
-void	children_free(t_global *global);
+// Excecution
+int	builtin_is_cmd(char **cmd, char **env);
+int	builtin_exec(char **cmd, char **env);
+
+// Shell Commands
+int	builtin_echo(char **cmd, char ** env);
 
 #endif
