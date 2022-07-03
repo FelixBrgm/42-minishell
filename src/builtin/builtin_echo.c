@@ -6,11 +6,13 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 17:08:56 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/03 17:10:07 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/03 17:14:44 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	builtin_echo(char **cmd, char ** env)
 {
+
+	
 	return (1);
 }
