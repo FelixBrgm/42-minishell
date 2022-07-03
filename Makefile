@@ -31,13 +31,16 @@ OFILES := $(CFILES:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OFILES)
-	$(CC) $(OFILES) -L/Users/$(USER)/goinfre/.brew/opt/readline/lib -iquote /Users/$(USER)/goinfre/.brew/opt/readline/include/readline/ -lreadline -o $(NAME) 
+	make -C libs
+	$(CC) $(OFILES) libs/libs.a -L/Users/$(USER)/goinfre/.brew/opt/readline/lib -iquote /Users/$(USER)/goinfre/.brew/opt/readline/include/readline/ -lreadline -o $(NAME) 
 
 clean: 
 	$(RM) $(OFILES)
+	make clean -C libs
 
 fclean: clean
 	$(RM) $(NAME)
+	make fclean -C libs
 
 re: fclean all
 
