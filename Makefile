@@ -12,7 +12,7 @@ BUILTIN := builtin/
 
 
 # INPUT
-INPUTCFILES := input_read.c input_parse.c
+INPUTCFILES := input_read.c input_parse.c dredir_in.c dredir_out.c redir_in.c redir_out.c split_mod.c
 INPUTCFILES := $(addprefix $(INPUT), $(INPUTCFILES))
 INPUTCFILES := $(addprefix $(SRC), $(INPUTCFILES))
 
