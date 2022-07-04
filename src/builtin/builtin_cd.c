@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 19:20:53 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/03 19:24:01 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/04 14:29:51 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	builtin_cd(char *dir)
 {
-	printf("DIR: %s\n", getcwd(NULL, 0));
+	if (chdir(dir))
+		return (1); // ALSO THROW AN ERROR
 	return (0);
 }

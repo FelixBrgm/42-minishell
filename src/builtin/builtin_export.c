@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/02 16:25:31 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/04 14:54:28 by fbruggem         ###   ########.fr       */
+/*   Created: 2022/07/04 14:53:48 by fbruggem          #+#    #+#             */
+/*   Updated: 2022/07/04 15:41:41 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_BUILTIN_H
-# define MINISHELL_BUILTIN_H
+#include "builtin.h"
 
-#include "../../minishell.h"
+int	builtin_export(char	**cmd, char **env)
+{
+	// is it only export
+		// then read them
+	// otherwise add variable
 
-// Excecution
-int	builtin_is_cmd(char **cmd, char **env);
-int	builtin_exec(char **cmd, char **env);
-
-// Shell Commands
-int	builtin_echo(char **cmd, char ** env);
-int	builtin_echo_n(char **cmd, char ** env);
-int	builtin_cd(char *dir);
-int	builtin_pwd(void);
-int	builtin_export(char	**cmd, char **env);
-#endif
+	int	i;
+	int	j;
+	j = 0;
+	while (env[j])
+	{
+		i = 0;
+		while (env[j][i])
+			printf("%c", env[j][i++]);
+		printf("\n");
+		j++;
+	}
+	return (0);
+}

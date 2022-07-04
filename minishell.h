@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:15:45 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/03 18:55:09 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/04 14:42:24 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ void	input_read(t_global *global);
 void	children_exec(t_global *global);
 
 void	global_free(t_global *global);
-
+// Built In
+int	builtin_exec(char **cmd, char **env);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_parse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:21:55 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/03 19:18:23 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/04 11:11:21 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	input_parse(t_global *global)
 
 	split_input = ft_split(global->input, '|');
 	children_count = count_and_init_children(global, split_input);
-	while ()
 }
 
 int	count_and_init_children(t_global *global, char **split_input)
@@ -108,7 +107,7 @@ void	print_children(t_global *global)
 		printf("file_out_trunc:\t%s\n", global->children[i]->file_out_trunc);
 		printf("file_out_app:\t%s\n", global->children[i]->file_out_app);
 		printf("limiter:\t%s\n", global->children[i]->limiter);
-		printf("-----------------------------------------\n")
+		printf("-----------------------------------------\n");
 		i++;
 	}
 }
@@ -124,4 +123,5 @@ int	find_dredirection(char *str)
 			return (1);
 		i++;
 	}
+	return (0);
 }
