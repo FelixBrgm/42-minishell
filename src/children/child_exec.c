@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: felixbruggemann <felixbruggemann@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 15:34:17 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/03 17:04:24 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/05 00:03:00 by felixbrugge      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	child_exec(t_child *child, char **env)
 	else if(builtin_is_cmd(child->cmd, env))
 		builtin_exec(child->cmd, env);
 	else
-		execve(child->cmd[0], child->cmd, env);
+		execve(child_where(child->cmd[0], env), &child->cmd[1], env);
 	exit(1);
 }
 

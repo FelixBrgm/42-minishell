@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_parse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: felixbruggemann <felixbruggemann@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:21:55 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/04 20:02:11 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/05 00:03:18 by felixbrugge      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	input_parse(t_global *global)
 	split_input = split_mod(global->input, '|');
 	split_input_copy = split_dup(split_input);
 	children_count = count_and_init_children(global, split_input);
-	printf("child count = %d\n", children_count);
+	//printf("child count = %d\n", children_count);
 	set_null_children(global, children_count);
 	split_input = sep_dredir_in(children_count, split_input);
 	if (split_input == NULL)
@@ -45,8 +45,18 @@ void	input_parse(t_global *global)
 		i++;
 	}
 	clear_input(split_input_copy);
-	print_children(global);
-	print_split(split_input_copy);
+		int x = 0;
+	while (split_input_copy[x])
+	{
+		
+		global->children[x]->cmd = ft_calloc(3, sizeof(t_child *));
+		global->children[x]->cmd[2] = NULL;
+		global->children[x]->cmd[0] = ft_split(split_input_copy[x], ' ')[0];
+		global->children[x]->cmd[1] = ft_strdup(split_input_copy[x]);
+		x++;
+	}
+	//print_children(global);
+
 }
 
 void	clear_input(char **input)

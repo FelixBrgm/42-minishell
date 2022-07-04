@@ -17,7 +17,7 @@ INPUTCFILES := $(addprefix $(INPUT), $(INPUTCFILES))
 INPUTCFILES := $(addprefix $(SRC), $(INPUTCFILES))
 
 # CHILDREN
-CHILDRENCFILES := children_exec.c child_exec.c limiter_exec.c children_free.c
+CHILDRENCFILES := children_exec.c child_exec.c limiter_exec.c child_where.c children_free.c
 CHILDRENCFILES := $(addprefix $(CHILDREN), $(CHILDRENCFILES))
 CHILDRENCFILES := $(addprefix $(SRC), $(CHILDRENCFILES))
 
@@ -39,6 +39,7 @@ all: $(NAME)
 $(NAME): $(OFILES)
 	make -C libs
 	$(CC) $(OFILES) libs/libs.a -L/Users/$(USER)/goinfre/.brew/opt/readline/lib -iquote /Users/$(USER)/goinfre/.brew/opt/readline/include/readline/ -lreadline -o $(NAME) 
+	./minishell
 
 clean: 
 	$(RM) $(OFILES)

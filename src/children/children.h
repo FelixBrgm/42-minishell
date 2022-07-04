@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   children.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: felixbruggemann <felixbruggemann@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:25:31 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/03 19:05:36 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/05 00:01:00 by felixbrugge      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@
 int		child_exec(t_child *child, char **env);
 int		limiter_exec(t_child *child);
 void	children_free(t_global *global);
-
+char	*child_where( char *cmd,char **env);
 #endif
