@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:14:50 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/03 19:07:34 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/04 14:03:47 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	main(int argc, char **argv, char **env)
 	t_global	global;
 
 
-	// while (1)
-	// 	input_read(&global);
+	while (1)
+		input_read(&global);
 	// set_to_default(global);
 	// while (1)
 	// {

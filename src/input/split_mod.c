@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 17:38:23 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/03 21:01:39 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/04 13:58:16 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ char	*copy_word(char *str, char c)
 	ret_str = malloc(size + 1);
 	// if (*str == '\'' || *str == '\"')
 	// 	str++;
+	// printf("str = %s\n", str);
 	while (i < size)
 	{
 		ret_str[i++] = *str;
@@ -83,8 +84,8 @@ char	*skip_word(char *str, char c)
 
 	i = 0;
 	size = get_len(str, c);
-	if (*str == '\'' || *str == '\"')
-		str++;
+	// if (*str == '\'' || *str == '\"')
+	// 	str++;
 	while (i < size)
 	{
 		str++;
@@ -131,24 +132,39 @@ char	**split_mod(char *str, char c)
 	return (ret);
 }
 
-void	print_split(char **str)
-{
-	int	i;
+//------------------DEBUG AND TESTING-----------------
 
-	i = 0;
-	while (str[i] != NULL)
-	{
-		if (i != 0)
-			printf(" ");
-		printf("<%s>", str[i]);
-		i++;
-	}
-	printf("\n");
-}
+// void	print_split(char **str)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (str[i] != NULL)
+// 	{
+// 		if (i != 0)
+// 			printf(" ");
+// 		printf("<%s>", str[i]);
+// 		i++;
+// 	}
+// 	printf("\n");
+// }
 
 
-int main ()
-{
-	char **str = split_mod("echo \'|\" aaa \'|\"asdad| aa cat -e hello there       ", '|');
-	print_split(str);
-}
+// int main ()
+// {
+// 	char *test1 = "echo hello | cat -e";
+// 	char *test2 = "echo \"hello   a\" | cat -e";
+// 	char *test3 = "echo \"hello   a |\" cat -e";
+// 	char *test4 = "echo \'hello   a |\' cat -e";
+// 	char *test5 = "echo hello|cat -e";
+// 	char **str = split_mod(test1, '|');
+// 	print_split(str);
+// 	str = split_mod(test2, '|');
+// 	print_split(str);
+// 	str = split_mod(test3, '|');
+// 	print_split(str);
+// 	str = split_mod(test4, '|');
+// 	print_split(str);
+// 	str = split_mod(test5, '|');
+// 	print_split(str);
+// }
