@@ -6,7 +6,7 @@
 /*   By: felixbruggemann <felixbruggemann@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:21:55 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 00:03:18 by felixbrugge      ###   ########.fr       */
+/*   Updated: 2022/07/05 00:13:43 by felixbrugge      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,7 @@ void	input_parse(t_global *global)
 		int x = 0;
 	while (split_input_copy[x])
 	{
-		
-		global->children[x]->cmd = ft_calloc(3, sizeof(t_child *));
-		global->children[x]->cmd[2] = NULL;
-		global->children[x]->cmd[0] = ft_split(split_input_copy[x], ' ')[0];
-		global->children[x]->cmd[1] = ft_strdup(split_input_copy[x]);
+		global->children[x]->cmd = ft_split(split_input_copy[x], ' ');
 		x++;
 	}
 	//print_children(global);

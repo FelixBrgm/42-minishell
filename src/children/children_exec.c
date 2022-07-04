@@ -6,7 +6,7 @@
 /*   By: felixbruggemann <felixbruggemann@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:26:52 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/04 23:57:12 by felixbrugge      ###   ########.fr       */
+/*   Updated: 2022/07/05 00:24:13 by felixbrugge      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	children_exec(t_global *global)
 		else
 		{
 			global->children[i]->fd_in = fd_current[0];
+			global->children[i]->fd_out = -1;
 			child_exec(global->children[i], global->env);
 		}
 		i++;

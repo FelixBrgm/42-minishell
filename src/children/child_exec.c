@@ -6,7 +6,7 @@
 /*   By: felixbruggemann <felixbruggemann@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 15:34:17 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 00:03:00 by felixbrugge      ###   ########.fr       */
+/*   Updated: 2022/07/05 00:25:03 by felixbrugge      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ int	child_exec(t_child *child, char **env)
 	else if(builtin_is_cmd(child->cmd, env))
 		builtin_exec(child->cmd, env);
 	else
-		execve(child_where(child->cmd[0], env), &child->cmd[1], env);
+	{
+		child->cmd[0] = child_where(child->cmd[0], env);
+		execve(child->cmd[0], child->cmd, env);
+	}
 	exit(1);
 }
 
