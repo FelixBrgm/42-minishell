@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: felixbruggemann <felixbruggemann@studen    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 15:34:17 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 00:25:03 by felixbrugge      ###   ########.fr       */
+/*   Updated: 2022/07/05 14:05:37 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	child_exec(t_child *child, char **env)
 	pid = fork();
 	if (pid != 0)
 		return (0);
-	if (child->fd_in != -1)
+	if (child->fd_in != -1 && !child->limiter)
 		dup2(child->fd_in, STDIN_FILENO);
 	if (child->fd_out != -1)
 		dup2(child->fd_out, STDOUT_FILENO);

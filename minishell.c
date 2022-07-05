@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:14:50 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 14:54:53 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/05 14:55:58 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv, char **env)
 	t_global	global;
 
 	set_to_default(&global, env);
-	builtin_export(NULL, global.env);
+
 	while (1)
 	{
 		input_read(&global);

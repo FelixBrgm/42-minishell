@@ -6,13 +6,20 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 17:08:56 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/03 19:14:13 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/05 12:59:41 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-int	builtin_echo(char **cmd, char ** env)
+
+/**
+ * @brief Prints the given parameters already extended with env
+ * 
+ * @param cmd as {"echo", "VALUE", ... }
+ * @return int 0 
+ */
+int	builtin_echo(char **cmd)
 {
 	int i;
 	int	j;
@@ -31,10 +38,15 @@ int	builtin_echo(char **cmd, char ** env)
 		j++;
 	}
 	printf("\n");
-	return (1);
+	return (0);
 }
-
-int	builtin_echo_n(char **cmd, char ** env)
+/**
+ * @brief Prints the given parameters
+ * 
+ * @param cmd as {"echo -n", "VALUE", ... }
+ * @return int 0
+ */
+int	builtin_echo_n(char **cmd)
 {	int i;
 	int	j;
 	
@@ -51,5 +63,5 @@ int	builtin_echo_n(char **cmd, char ** env)
 			printf(" ");
 		j++;
 	}
-	return (1);
+	return (0);
 }
