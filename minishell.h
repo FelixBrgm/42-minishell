@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:15:45 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 14:36:08 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/05 14:57:34 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <termios.h>
 # include "readline/history.h"
 # include "readline/readline.h"
+# include <sys/errno.h>
 
 typedef struct s_child
 {
