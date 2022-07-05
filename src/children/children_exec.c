@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:26:52 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 14:55:06 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/05 16:40:46 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,17 @@ void	children_exec(t_global *global)
 			global->children[i]->fd_in = fd_current[0];
 			global->children[i]->fd_out = fd_current[1];
 			child_exec(global->children[i], global->env);
+			if (i > 0)
+				close(fd_current[0]);
 			fd_current[0] = fd_temp[0];
+			close(fd_current[1]);
 		}
 		else
 		{
 			global->children[i]->fd_in = fd_current[0];
 			global->children[i]->fd_out = -1;
 			child_exec(global->children[i], global->env);
+			close(fd_current[0]);
 		}
 		i++;
 	}
