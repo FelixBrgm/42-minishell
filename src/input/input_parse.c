@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:21:55 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 16:56:09 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/05 17:01:14 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	input_parse(t_global *global)
 		}
 		x++;
 	}
-	print_children(global);
+	//print_children(global);
 
 }
 

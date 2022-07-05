@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:24:47 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/04 16:21:04 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:29:27 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	set_to_default(t_global	*global, char **env)
 	i = 0;
 	while (env[i])
 	{
-		global->env[i] = env[i];
+		global->env[i] = ft_strdup(env[i]);
 		i++;
 	}
 	return (0);
