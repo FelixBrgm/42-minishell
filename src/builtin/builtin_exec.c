@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 17:06:15 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 20:07:32 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:25:48 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	builtin_exec(char **cmd, char **env)
 	else if (ft_strncmp(cmd[0], "env" , ft_strlen(cmd[0])) == 0)
 		return (builtin_env(env));
 	else if (ft_strncmp(cmd[0], "cd" , ft_strlen(cmd[0])) == 0)
-		return (builtin_cd(cmd));
+		return (builtin_cd(cmd, env));
 	else 
 		return (1);
 }

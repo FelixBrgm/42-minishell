@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 19:20:53 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 20:05:30 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:43:28 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,17 @@
  * @param cmd as { "cd", "DIR" }
  * @return int 
  */
-int	builtin_cd(char **cmd)
+int	builtin_cd(char **cmd, char **env)
 {
+	char **pwd;
+	char **pwd_old;
 	if (!cmd)
 		return (1);
-	
-	printf("cmd: %s\n", cmd[1]);
+	pwd = export_get(env, "PWD");
+	pwd_old = export_get(env, "OLDPWD");
+	*pwd_old = ft_strjoin("OLD", *pwd);
 	if (chdir(cmd[1]))
 		return (1); // ALSO THROW AN ERROR
+	*pwd = ft_strjoin("PWD=", getcwd(NULL, 0));
 	return (0);
 }
