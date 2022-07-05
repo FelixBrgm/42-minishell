@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:53:48 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 15:29:51 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:51:18 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,10 @@ static int	export_update(char **env, char *text)
 	while (temp[i] && temp[i] != '=')
 		i++;
 	temp[i] = '\0';
+	printf("TEMP: %s\n", temp);
 	env_i = export_get(env, temp);
 	if (env_i >= 0)
-	{
-		printf("ENV[%d] before: %p\n", env_i, env[env_i]);
-		printf("ENV OG before: %p\n", env);
 		env[env_i]= ft_strdup(text);
-		printf("ENV after: %p\n", env[env_i]);
-		printf("ENV OG after: %p\n", env);
-	}
 	else
 	{
 		i = 0;
@@ -82,11 +77,10 @@ static int	export_get(char **env, char *name)
 	while (env[i])
 	{
 		if (ft_strncmp(env[i], name, ft_strlen(name)) == 0 
-			&& env[i][ft_strlen(name)] == '=')
+			&& (env[i][ft_strlen(name)] == '=' || env[i][ft_strlen(name)] == '\0'))
 				return (i);
 		i++;
 	}
-	printf("END");
 	return (-1);
 }
 
@@ -107,6 +101,8 @@ static int	builtin_export_print(char **env)
 		}
 		if (env[j][i] == '=')
 		{
+			printf("%c", env[j][i]);
+			i++;
 			printf("%c", '"');
 			while (env[j][i])
 				printf("%c", env[j][i++]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 15:34:17 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 17:01:18 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:10:10 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@ int		child_exec_set_file_out_trunc_fd(char *file);
 int		child_exec_set_file_out_app_fd(char *file);
 int		dup2_close(int fd, int fd2);
 void	perror_exit(char *str);
+int		child_need_fork(char **cmd);
 
 void	child_exec(t_child *child, char **env)
 {
 	int	pid;
 
-	pid = fork();
+	pid = 0;
+	if (child_need_fork(child->cmd))
+		pid = fork();
 	if (pid != 0)
 		return ;
 	if (child->fd_in != -1 && !child->limiter && dup2_close(child->fd_in, STDIN_FILENO))
@@ -36,9 +39,18 @@ void	child_exec(t_child *child, char **env)
 	if (child->file_out_app && child_exec_set_file_out_app_fd(child->file_out_app))
 		perror_exit("Error file_out_app");
 	if (child->limiter)
+	{
 		limiter_exec(child);
-	else if(builtin_is_cmd(child->cmd, env) && builtin_exec(child->cmd, env))
-		perror_exit("Error builtin_exec");
+		return ;
+	}
+	else if(builtin_is_cmd(child->cmd, env))
+	{
+		if (builtin_exec(child->cmd, env))
+			perror_exit("Error builtin_exec");
+		if (child_need_fork(child->cmd))
+			exit(0);
+		return ;
+	}
 	else
 	{
 		child->cmd[0] = child_where(child->cmd[0], env);
@@ -88,4 +100,20 @@ void	perror_exit(char *str)
 {
 	perror(str);
 	exit(errno);
+}
+
+int	child_need_fork(char **cmd)
+{
+	if (!cmd)
+		return (1);
+	if (ft_strncmp(cmd[0], "export" , ft_strlen(cmd[0])) == 0 
+		&& cmd[1])
+		return (0);
+	if (ft_strncmp(cmd[0], "unset" , ft_strlen(cmd[0])) == 0 
+		&& cmd[1])
+		return (0);
+	if (ft_strncmp(cmd[0], "cd" , ft_strlen(cmd[0])) == 0 
+		&& cmd[1])
+		return (0);
+	return (1);
 }

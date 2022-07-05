@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 19:20:53 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 13:01:05 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:05:30 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	builtin_cd(char **cmd)
 {
 	if (!cmd)
 		return (1);
+	
+	printf("cmd: %s\n", cmd[1]);
 	if (chdir(cmd[1]))
 		return (1); // ALSO THROW AN ERROR
 	return (0);

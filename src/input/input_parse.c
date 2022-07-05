@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_parse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:21:55 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 17:01:14 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:56:45 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,16 @@ void	input_parse(t_global *global)
 		i++;
 	}
 	clear_input(split_input_copy);
-	print_split(split_input_copy);
+	//print_split(split_input_copy);
 	int x = 0;
 	int	j = 0;
 	while (global->children[x] != NULL)
 	{
-		printf("child %d limiter == %s\n", x, global->children[x]->limiter);
+		//printf("child %d limiter == %s\n", x, global->children[x]->limiter);
 		if (global->children[x]->limiter == NULL)
 		{
 			global->children[x]->cmd = split_mod(split_input_copy[j], ' ');
-			printf("j = %d\n", j);
+			//printf("j = %d\n", j);
 			j++;
 		}
 		x++;

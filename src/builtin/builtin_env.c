@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 13:57:45 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 14:03:50 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/05 18:02:00 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int builtin_env(char **env)
 		return (1);
 	while (env[i])
 	{
-		printf("%s", env[i]);
+		if (ft_strnstr(env[i], "=", ft_strlen(env[i])))
+			printf("%s\n", env[i]);
 		i++;
 	}
 	return (0);
