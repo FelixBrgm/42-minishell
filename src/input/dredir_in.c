@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 19:02:01 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/04 19:22:59 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/05 14:25:45 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char **sep_dredir_in(int count, char **old_input)
 	j = 0;
 	while (old_input[j] != NULL)
 	{
-		if (is_dredir_in(old_input[j]) > 0)
+		if (is_dredir_in(old_input[j]) > -1)
 		{
 			ret[i] = get_dredir(old_input[j]);
 			if (ret[i] == NULL)

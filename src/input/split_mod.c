@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 17:38:23 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/04 13:58:16 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/05 14:22:56 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ int	get_len(char *str, char c)
 
 	size = 0;
 	if (*str == '\"' && ft_strchr(str + 1, '\"') != NULL)
-		size = get_len_until_char(str + 1, '\"', c);
+		size = get_len_until_char(str + 1, '\"', c) + 1;
 	else if (*str == '\'' && ft_strchr(str + 1, '\'') != NULL)
-		size = get_len_until_char(str + 1, '\'', c);
+		size = get_len_until_char(str + 1, '\'', c) + 1;
 	else
 		size = get_len_until_char(str, c, c);
 	return (size);
@@ -84,6 +84,8 @@ char	*skip_word(char *str, char c)
 
 	i = 0;
 	size = get_len(str, c);
+	// printf("SIZE = %d\n", size);
+	// printf("str = %s\n", str);
 	// if (*str == '\'' || *str == '\"')
 	// 	str++;
 	while (i < size)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   children_exec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: felixbruggemann <felixbruggemann@studen    +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:26:52 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 00:24:13 by felixbrugge      ###   ########.fr       */
+/*   Updated: 2022/07/05 14:55:06 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ void	children_exec(t_global *global)
 		}
 		i++;
 	}
-	waitpid(0, NULL, 0);
+	while (wait(NULL) != -1 || errno != ECHILD)
+        continue ;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_parse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: felixbruggemann <felixbruggemann@studen    +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:21:55 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 00:13:43 by felixbrugge      ###   ########.fr       */
+/*   Updated: 2022/07/05 14:35:17 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	input_parse(t_global *global)
 
 	i = 0;
 	split_input = split_mod(global->input, '|');
+	// print_split(split_input);
 	split_input_copy = split_dup(split_input);
 	children_count = count_and_init_children(global, split_input);
 	//printf("child count = %d\n", children_count);
@@ -45,13 +46,21 @@ void	input_parse(t_global *global)
 		i++;
 	}
 	clear_input(split_input_copy);
-		int x = 0;
-	while (split_input_copy[x])
+	print_split(split_input_copy);
+	int x = 0;
+	int	j = 0;
+	while (global->children[x] != NULL)
 	{
-		global->children[x]->cmd = ft_split(split_input_copy[x], ' ');
+		printf("child %d limiter == %s\n", x, global->children[x]->limiter);
+		if (global->children[x]->limiter == NULL)
+		{
+			global->children[x]->cmd = split_mod(split_input_copy[j], ' ');
+			printf("j = %d\n", j);
+			j++;
+		}
 		x++;
 	}
-	//print_children(global);
+	print_children(global);
 
 }
 
