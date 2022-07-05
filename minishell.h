@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:15:45 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 14:57:34 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:40:12 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_global
 	// CONFIG
 	char			*promt;
 	int				interactive_mode;
+	int				ex_status;
 	char			**env;
 	struct termios	old_termios;
 	//Runtime
