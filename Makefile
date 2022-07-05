@@ -22,7 +22,7 @@ CHILDRENCFILES := $(addprefix $(CHILDREN), $(CHILDRENCFILES))
 CHILDRENCFILES := $(addprefix $(SRC), $(CHILDRENCFILES))
 
 # BUILTIN
-BUILTINCFILES := builtin_exec.c builtin_is_cmd.c builtin_echo.c builtin_cd.c builtin_pwd.c builtin_export.c
+BUILTINCFILES := builtin_exec.c builtin_is_cmd.c builtin_echo.c builtin_cd.c builtin_pwd.c builtin_export.c builtin_env.c
 BUILTINCFILES := $(addprefix $(BUILTIN), $(BUILTINCFILES))
 BUILTINCFILES := $(addprefix $(SRC), $(BUILTINCFILES))
 
