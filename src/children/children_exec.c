@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   children_exec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:26:52 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 20:43:23 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/05 22:35:55 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ void	children_exec(t_global *global)
 		}
 		i++;
 	}
-	if (WIFEXITED(global->ex_status))
-		printf("EXIT CODE WAS %d\n", WEXITSTATUS(global->ex_status));
+	// if (WIFEXITED(global->ex_status))
+		// printf("EXIT CODE WAS %d\n", WEXITSTATUS(global->ex_status));
 }

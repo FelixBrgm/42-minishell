@@ -22,7 +22,7 @@ CHILDRENCFILES := $(addprefix $(CHILDREN), $(CHILDRENCFILES))
 CHILDRENCFILES := $(addprefix $(SRC), $(CHILDRENCFILES))
 
 # BUILTIN
-BUILTINCFILES := builtin_exec.c builtin_is_cmd.c builtin_echo.c builtin_cd.c builtin_pwd.c builtin_export.c builtin_env.c
+BUILTINCFILES := builtin_exec.c builtin_is_cmd.c builtin_echo.c builtin_cd.c builtin_pwd.c builtin_export.c builtin_env.c builtin_unset.c builtin_exit.c
 BUILTINCFILES := $(addprefix $(BUILTIN), $(BUILTINCFILES))
 BUILTINCFILES := $(addprefix $(SRC), $(BUILTINCFILES))
 
@@ -39,7 +39,7 @@ all: $(NAME)
 $(NAME): $(OFILES)
 	make -C libs
 	$(CC) $(OFILES) libs/libs.a -L/Users/$(USER)/goinfre/.brew/opt/readline/lib -iquote /Users/$(USER)/goinfre/.brew/opt/readline/include/readline/ -lreadline -o $(NAME) 
-	./minishell
+	# ./minishell
 
 clean: 
 	$(RM) $(OFILES)

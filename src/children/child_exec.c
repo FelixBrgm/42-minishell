@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 15:34:17 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 20:47:57 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/05 21:25:20 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,11 +112,11 @@ int	child_need_fork(char **cmd)
 	if (ft_strncmp(cmd[0], "export" , ft_strlen(cmd[0])) == 0 
 		&& cmd[1])
 		return (0);
-	if (ft_strncmp(cmd[0], "unset" , ft_strlen(cmd[0])) == 0 
-		&& cmd[1])
+	if (ft_strncmp(cmd[0], "unset" , ft_strlen(cmd[0])) == 0)
 		return (0);
-	if (ft_strncmp(cmd[0], "cd" , ft_strlen(cmd[0])) == 0 
-		&& cmd[1])
+	if (ft_strncmp(cmd[0], "cd" , ft_strlen(cmd[0])) == 0)
+		return (0);
+	if (ft_strncmp(cmd[0], "exit" , ft_strlen(cmd[0])) == 0)
 		return (0);
 	return (1);
 }

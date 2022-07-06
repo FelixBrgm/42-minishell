@@ -6,11 +6,13 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 17:06:15 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 20:25:48 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/05 21:21:57 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
+
+extern int exit_code;
 
 /**
  * @brief Executes a built in command
@@ -33,6 +35,10 @@ int	builtin_exec(char **cmd, char **env)
 		return (builtin_env(env));
 	else if (ft_strncmp(cmd[0], "cd" , ft_strlen(cmd[0])) == 0)
 		return (builtin_cd(cmd, env));
+	else if (ft_strncmp(cmd[0], "unset" , ft_strlen(cmd[0])) == 0)
+		return (builtin_unset(cmd, env));
+	else if (ft_strncmp(cmd[0], "exit" , ft_strlen(cmd[0])) == 0)
+		return (builtin_exit(cmd));
 	else 
 		return (1);
 }
