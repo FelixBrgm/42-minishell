@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:25:31 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/06 14:02:12 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:30:40 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,4 @@ int builtin_env(char **env, char **cmd);
 int	builtin_unset(char **cmd, char **env);
 int	builtin_exit(char **cmd);
 
-// Utils
-char	**export_get(char **env, char *name);
 #endif

@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 11:31:21 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/06 12:17:13 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:51:40 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ char **env_update(char **env, char *name, char *value)
 	if (temp)
 	{
 		free(*temp);
-		*temp = ft_strjoin_free(ft_strjoin(name, "="), value);
+		if (*value == '\0')
+			*temp = ft_strdup(name);
+		else
+			*temp = ft_strjoin_free(ft_strjoin(name, "="), value);
 		return (temp);
 	}
 	else
@@ -65,7 +68,10 @@ char **env_update(char **env, char *name, char *value)
 		temp = env_extend(env);
 		if(!temp)
 			return (NULL);
-		*temp = ft_strjoin_free(ft_strjoin(name, "="), value);
+		if (*value == '\0')
+			*temp = ft_strdup(name);
+		else
+			*temp = ft_strjoin_free(ft_strjoin(name, "="), value);
 		return (temp);
 	}
 	return (NULL);
@@ -113,6 +119,6 @@ char **env_extend(char **env)
 	if (i >= 1023)
 		return (NULL);
 	env[i + 1] = NULL;
-	env[i] = 1;
+	env[i] = (char *) 0x1;
 	return (&env[i]);
 }

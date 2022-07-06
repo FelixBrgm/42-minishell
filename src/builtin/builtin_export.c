@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:53:48 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 20:35:19 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:41:37 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static int	builtin_export_print(char **env);
 static int	export_update(char **env, char *text);
-
+char *convert_to_name(char *text);
+char *convert_to_value(char *text);
 /**
  * @brief Mimiks the functionality from export 
  * 
@@ -40,48 +41,75 @@ int	builtin_export(char	**cmd, char **env)
 	return (0);
 }
 
-static int	export_update(char **env, char *text)
+static int export_update(char **env, char *text)
 {
-	char *temp;
-	char	**env_i;
-	int	i;
+	char *name;
+	char *value;
 
-	temp = ft_strdup(text);
-	i = 0;
-	while (temp[i] && temp[i] != '=')
-		i++;
-	temp[i] = '\0';
-	env_i = export_get(env, temp);
-	if (env_i)
-		*env_i = ft_strdup(text);
-	else
-	{
-		i = 0;
-		while (env[i])
-			i++;
-		env[i] = ft_strdup(text);
-		env[i + 1] = NULL;
-	}
-	free(temp);
+	name = NULL;
+	value = NULL;
+	name = convert_to_name(text);
+	value = convert_to_value(text);
+	if (ft_protect(2, name, value))
+		return (1);
+	if (!env_update(env, name, value))
+		return (1);
+	free(name);
+	free(value);
 	return (0);
 }
 
 
-char **export_get(char **env, char *name)
+/**
+ * @brief gets name of text | ALLOCATES
+ * 
+ * @param text 
+ * @return char* 
+ */
+char *convert_to_name(char *text)
 {
 	int	i;
-	
+	char *temp;
+	char *res;
+	if (!text)
+		return (NULL);
 	i = 0;
-	while (env[i])
-	{
-		if (ft_strncmp(env[i], name, ft_strlen(name)) == 0 
-			&& (env[i][ft_strlen(name)] == '=' || env[i][ft_strlen(name)] == '\0'))
-				return (&env[i]);
+	temp = NULL;
+	temp = ft_strdup(text);
+	if (!temp)
+		return (NULL);
+	while (temp[i] && temp[i] != '=')
 		i++;
-	}
-	return (NULL);
+	res = (ft_strdup_i(temp, i));
+	free(temp);
+	return (res);
 }
 
+/**
+ * @brief | ALLOCATES
+ * 
+ * @param text 
+ * @return char* 
+ */
+char *convert_to_value(char *text)
+{
+	int	i;
+	char *temp;
+	char *res;
+	
+	if (!text)
+		return (NULL);
+	i = 0;
+	temp = NULL;
+	temp = ft_strdup(text);
+	if (!temp)
+		return (NULL);
+	while (temp[i] && temp[i] != '=')
+		i++;
+	res = (ft_strdup_i(&temp[i + 1], ft_strlen(temp) - i));
+		free(temp);
+	return (res);
+}
 
 static int	builtin_export_print(char **env)
 {
