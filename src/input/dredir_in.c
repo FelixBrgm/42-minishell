@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 19:02:01 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/05 14:25:45 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:00:48 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*rem_dredir_in(char *str)
 	tmp = split_mod(str, ' ');
 	i = 0;
 	ret = NULL;
-	while (tmp[i] != NULL)
+	while (tmp != NULL && tmp[i] != NULL)
 	{
 		if (is_dredir_in(tmp[i]) == -1)
 		{
@@ -51,7 +51,8 @@ char	*rem_dredir_in(char *str)
 		i++;
 	}
 	free_split(tmp);
-	free(str);
+	if (str != NULL)
+		free(str);
 	return (ret);
 }
 

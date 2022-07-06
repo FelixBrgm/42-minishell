@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 17:38:23 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/05 14:22:56 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/06 13:58:27 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,8 @@ char	**split_mod(char *str, char c)
 	int		i;
 	int		size;
 
+	if (str == NULL)
+		return (NULL);
 	size = word_count(str, c);
 	ret = malloc((size + 1) * sizeof(char *));
 	i = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:53:48 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/06 15:41:37 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/06 17:31:03 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char *convert_to_name(char *text)
 		return (NULL);
 	while (temp[i] && temp[i] != '=')
 		i++;
-	res = (ft_strdup_i(temp, i));
+	// res = (ft_strdup_i(temp, i));
 	free(temp);
 	return (res);
 }
@@ -106,7 +106,7 @@ char *convert_to_value(char *text)
 		return (NULL);
 	while (temp[i] && temp[i] != '=')
 		i++;
-	res = (ft_strdup_i(&temp[i + 1], ft_strlen(temp) - i));
+	// res = (ft_strdup_i(&temp[i + 1], ft_strlen(temp) - i));
 		free(temp);
 	return (res);
 }

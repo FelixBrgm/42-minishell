@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_parse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:21:55 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 19:56:45 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/06 18:41:54 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	input_parse(t_global *global)
 	int		i;
 
 	i = 0;
+	global->input = add_spaces(global->input);
 	split_input = split_mod(global->input, '|');
 	// print_split(split_input);
 	split_input_copy = split_dup(split_input);
@@ -60,7 +61,7 @@ void	input_parse(t_global *global)
 		}
 		x++;
 	}
-	//print_children(global);
+	// print_children(global);
 
 }
 
@@ -69,6 +70,10 @@ void	clear_input(char **input)
 	int	i;
 
 	i = 0;
+	if (input == NULL)
+	{
+		return ;
+	}
 	while (input[i] != NULL)
 	{
 		input[i] = rem_redirs(input[i]);
@@ -107,6 +112,7 @@ void	set_null_children(t_global *global, int count)
 	}
 }
 
+//function leaks, free(tmp) before return(1)
 int	set_files(t_global *global, char *str, int child_i)
 {
 	char	**tmp;
@@ -225,7 +231,7 @@ void free_split(char **str)
 	int	i;
 
 	i = 0;
-	while (str[i] != NULL)
+	while (str != NULL && str[i] != NULL)
 	{
 		free(str[i]);
 		i++;

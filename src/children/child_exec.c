@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 15:34:17 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/06 14:03:05 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/06 19:53:33 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		dup2_close(int fd, int fd2);
 void	perror_exit(char *str);
 int		child_need_fork(char **cmd);
 
-void	child_exec(t_child *child, char **env, int *ex_status)
+void	child_exec(t_child *child, char **env, int free_pipe)
 {
 	int	pid;
 
@@ -28,9 +28,10 @@ void	child_exec(t_child *child, char **env, int *ex_status)
 		pid = fork();
 	if (pid != 0)
 	{
-		waitpid(pid, ex_status, 0);
+		// waitpid(pid, ex_status, 0);
 		return ;
 	}
+	close(free_pipe);
 	if (child->fd_in != -1 && !child->limiter && dup2_close(child->fd_in, STDIN_FILENO))
 		perror_exit("Error fd_in");
 	if (child->fd_out != -1 && dup2_close(child->fd_out, STDOUT_FILENO))
@@ -98,7 +99,9 @@ int	child_exec_set_file_out_app_fd(char *file)
 
 int	dup2_close(int fd, int fd2)
 {
-	if (dup2(fd, fd2) < 0 || close(fd) < 0)
+	if (dup2(fd, fd2) < 0)
+		return (1);
+	if (close(fd) < 0)
 		return (1);
 	return (0);
 }

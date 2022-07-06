@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   children_exec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:26:52 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 22:35:55 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/06 19:50:47 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	children_exec(t_global *global)
 			fd_current[1] = fd_temp[1];
 			global->children[i]->fd_in = fd_current[0];
 			global->children[i]->fd_out = fd_current[1];
-			child_exec(global->children[i], global->env, &global->ex_status);
+			child_exec(global->children[i], global->env, fd_temp[0]);
 			if (i > 0)
 				close(fd_current[0]);
 			fd_current[0] = fd_temp[0];
@@ -40,10 +40,11 @@ void	children_exec(t_global *global)
 			global->children[i]->fd_in = fd_current[0];
 			global->children[i]->fd_out = -1;
 			child_exec(global->children[i], global->env, &global->ex_status);
-			close(fd_current[0]);
+			if (i > 0)
+				close(fd_current[0]);
 		}
 		i++;
 	}
-	// if (WIFEXITED(global->ex_status))
-		// printf("EXIT CODE WAS %d\n", WEXITSTATUS(global->ex_status));
+	while (wait(NULL) != -1 || errno != ECHILD)
+		continue ;
 }

@@ -6,20 +6,27 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:23:08 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/04 19:41:35 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/06 17:51:25 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_INPUT_H
 # define MINISHELL_INPUT_H
 
-#include "../../minishell.h"
+# include "../../minishell.h"
+# include "../utils/utils.h"
 
 void	input_parse(t_global *global);
 char	**split_mod(char *str, char c);
 char	*rem_redirs(char *old_input);
 void	set_null_children(t_global *global, int count);
 void	clear_input(char **input);
+
+//input_add_spaces
+int		is_valid_redir(char *str, int i);
+int		len_with_spaces(char *str);
+char	*add_spaces(char *str);
+
 
 //dredir_in
 char	*get_dredir(char *str);
