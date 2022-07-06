@@ -9,6 +9,7 @@ SRC := src/
 INPUT := input/
 CHILDREN := children/
 BUILTIN := builtin/
+UTILS := utils/
 
 
 # INPUT
@@ -26,12 +27,17 @@ BUILTINCFILES := builtin_exec.c builtin_is_cmd.c builtin_echo.c builtin_cd.c bui
 BUILTINCFILES := $(addprefix $(BUILTIN), $(BUILTINCFILES))
 BUILTINCFILES := $(addprefix $(SRC), $(BUILTINCFILES))
 
+# UTILS
+UTILSCFILES := utils_env.c
+UTILSCFILES := $(addprefix $(UTILS), $(UTILSCFILES))
+UTILSCFILES := $(addprefix $(SRC), $(UTILSCFILES))
+
 # SPEC
 CFILES := global_free.c set_to_default.c
 CFILES := $(addprefix $(SRC), $(CFILES))
 
 # ALL
-CFILES := $(CFILES) $(INPUTCFILES) $(CHILDRENCFILES) $(BUILTINCFILES) minishell.c
+CFILES := $(CFILES) $(INPUTCFILES) $(CHILDRENCFILES) $(BUILTINCFILES) $(UTILSCFILES) minishell.c
 OFILES := $(CFILES:.c=.o)
 
 all: $(NAME)
