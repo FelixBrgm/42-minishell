@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 19:20:53 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/06 13:28:39 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/06 13:40:26 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ int	builtin_cd(char **cmd, char **env)
 	if (!cmd)
 		return (1);
 	if (!cmd[1])
-		return (1);
+		return (0);
+	getcwd(temp, PATH_MAX);	
+	env_update(env, "OLDPWD", temp);
 	if (chdir(cmd[1]))
 	{
 		printf("cd: %s", cmd[1]);

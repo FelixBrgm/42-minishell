@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 17:06:15 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 21:21:57 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:02:25 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,14 @@ extern int exit_code;
  */
 int	builtin_exec(char **cmd, char **env)
 {
-	if (ft_strncmp(cmd[0], "echo -n" , ft_strlen(cmd[0])) == 0)
-		return (builtin_echo_n(cmd));
-	else if (ft_strncmp(cmd[0], "echo" , ft_strlen(cmd[0])) == 0)
+	if (ft_strncmp(cmd[0], "echo" , ft_strlen(cmd[0])) == 0)
 		return (builtin_echo(cmd));
 	else if (ft_strncmp(cmd[0], "pwd" , ft_strlen(cmd[0])) == 0)
 		return (builtin_pwd());
 	else if (ft_strncmp(cmd[0], "export" , ft_strlen(cmd[0])) == 0)
 		return (builtin_export(cmd, env));
 	else if (ft_strncmp(cmd[0], "env" , ft_strlen(cmd[0])) == 0)
-		return (builtin_env(env));
+		return (builtin_env(env, cmd));
 	else if (ft_strncmp(cmd[0], "cd" , ft_strlen(cmd[0])) == 0)
 		return (builtin_cd(cmd, env));
 	else if (ft_strncmp(cmd[0], "unset" , ft_strlen(cmd[0])) == 0)

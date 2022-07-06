@@ -45,7 +45,7 @@ all: $(NAME)
 $(NAME): $(OFILES)
 	make -C libs
 	$(CC) $(OFILES) libs/libs.a -L/Users/$(USER)/goinfre/.brew/opt/readline/lib -iquote /Users/$(USER)/goinfre/.brew/opt/readline/include/readline/ -lreadline -o $(NAME) 
-	# ./minishell
+	./minishell
 
 clean: 
 	$(RM) $(OFILES)

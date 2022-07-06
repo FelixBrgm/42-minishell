@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 17:08:56 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 12:59:41 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/06 13:38:11 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,17 @@ int	builtin_echo(char **cmd)
 {
 	int i;
 	int	j;
+	int	n;
 	
+	n = 0;
 	j = 1;
 	while (cmd[j])
 	{
+		if (ft_strncmp(cmd[j], "-n", 3) == 0)
+		{
+			n = 1;
+			j++;
+		}
 		i = 0;
 		while(cmd[j][i])
 		{
@@ -37,31 +44,7 @@ int	builtin_echo(char **cmd)
 			printf(" ");
 		j++;
 	}
-	printf("\n");
-	return (0);
-}
-/**
- * @brief Prints the given parameters
- * 
- * @param cmd as {"echo -n", "VALUE", ... }
- * @return int 0
- */
-int	builtin_echo_n(char **cmd)
-{	int i;
-	int	j;
-	
-	j = 1;
-	while (cmd[j])
-	{
-		i = 0;
-		while(cmd[j][i])
-		{
-			printf("%c", cmd[j][i]);
-			i++;
-		}
-		if (cmd[j + 1])
-			printf(" ");
-		j++;
-	}
+	if (n == 0)
+		printf("\n");
 	return (0);
 }

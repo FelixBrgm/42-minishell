@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 15:34:17 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 21:25:20 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:03:05 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,11 @@ void	child_exec(t_child *child, char **env, int *ex_status)
 	else if(builtin_is_cmd(child->cmd, env))
 	{
 		if (builtin_exec(child->cmd, env))
-			perror_exit("Error builtin_exec");
+		{
+			printf("Error builtin_exec\n");
+			if (child_need_fork(child->cmd))
+				exit(1);
+		}
 		if (child_need_fork(child->cmd))
 			exit(0);
 		return ;

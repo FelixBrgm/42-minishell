@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 16:34:01 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 21:22:12 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/06 13:34:57 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ extern int exit_code;
 
 int	builtin_is_cmd(char **cmd, char **env)
 {
-	if (ft_strncmp(cmd[0], "echo -n" , ft_strlen(cmd[0])) == 0)
-		return (1);
 	if (ft_strncmp(cmd[0], "echo" , ft_strlen(cmd[0])) == 0)
 		return (1);
 	if (ft_strncmp(cmd[0], "pwd" , ft_strlen(cmd[0])) == 0)
