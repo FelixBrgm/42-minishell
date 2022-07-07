@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 15:34:17 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/06 19:53:33 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/07 13:45:31 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,9 @@ int	child_exec_set_file_in_fd(char *file)
 int	child_exec_set_file_out_trunc_fd(char *file)
 {
 	int	fd;
-	
-	fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
+
+	fd = open(file, O_WRONLY | O_CREAT | O_TRUNC,
+			S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (fd < 0 || dup2_close(fd, STDOUT_FILENO))
 		return (1);
 	return (0);
@@ -91,7 +92,8 @@ int	child_exec_set_file_out_app_fd(char *file)
 {
 	int	fd;
 	
-	fd = open(file, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
+	fd = open(file, O_WRONLY | O_CREAT | O_APPEND,
+			S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (fd < 0 || dup2_close(fd, STDOUT_FILENO))
 		return (1);
 	return (0);
