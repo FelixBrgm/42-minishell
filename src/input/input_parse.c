@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:21:55 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/06 18:41:54 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/07 20:00:54 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ void	input_parse(t_global *global)
 	i = 0;
 	global->input = add_spaces(global->input);
 	split_input = split_mod(global->input, '|');
-	// print_split(split_input);
 	split_input_copy = split_dup(split_input);
 	children_count = count_and_init_children(global, split_input);
-	//printf("child count = %d\n", children_count);
+	printf("child count = %d\n", children_count);
 	set_null_children(global, children_count);
 	split_input = sep_dredir_in(children_count, split_input);
 	if (split_input == NULL)
@@ -46,8 +45,15 @@ void	input_parse(t_global *global)
 		}
 		i++;
 	}
-	clear_input(split_input_copy);
-	//print_split(split_input_copy);
+	clear_input(split_input_copy, global->env);
+	if (split_input_copy[0] == NULL)
+	{
+		printf("SYNTAX ERROR\n");
+		free(split_input_copy);
+		//need to free children here
+		global->children[0] = NULL;
+		return ;
+	}
 	int x = 0;
 	int	j = 0;
 	while (global->children[x] != NULL)
@@ -65,18 +71,80 @@ void	input_parse(t_global *global)
 
 }
 
-void	clear_input(char **input)
+char *remove_first_character(char *str)
+{
+	int	i;
+
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (str[i])
+	{
+		str[i] = str[i + 1];
+		i++;
+	}	
+	str[i -1] = '\0';
+	return (str);
+}
+
+char	*rem_quotes(char *str)
+{
+	int	status; // 0 Nothing encountered | 1 "" | 2 ''
+	int 	i;
+	char *res;
+	
+	i = 0;
+	status = 0;
+	if (!str)
+		return (NULL);
+	while (str[i])
+	{
+		if (status == 0)
+		{
+			if (str[i] == '\"')
+			{
+				status = 1;
+				remove_first_character(&str[i]);
+			}
+			else if (str[i] == '\'')
+			{
+				status = 2;
+				remove_first_character(&str[i]);
+			}
+			else 
+				i++;
+		}
+		else if (status == 1 && str[i] == '\"')
+		{
+			status = 0;
+				remove_first_character(&str[i]);
+		}
+		else if (status == 2 && str[i] == '\'')
+		{
+			status = 0;
+				remove_first_character(&str[i]);
+		}
+		else
+			i++;
+	}
+	res = ft_strdup(str);
+	free(str);
+	return (res);
+}
+
+void	clear_input(char **input, char **env)
 {
 	int	i;
 
 	i = 0;
 	if (input == NULL)
-	{
 		return ;
-	}
 	while (input[i] != NULL)
 	{
 		input[i] = rem_redirs(input[i]);
+		input[i] = set_vars(input[i], env);
+		// sleep(100);
+		input[i] = rem_quotes(input[i]);
 		i++;
 	}
 }
@@ -236,7 +304,8 @@ void free_split(char **str)
 		free(str[i]);
 		i++;
 	}
-	free(str);
+	if (str != NULL)
+		free(str);
 }
 
 void	print_children(t_global *global)

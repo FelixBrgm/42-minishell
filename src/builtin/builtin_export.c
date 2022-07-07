@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:53:48 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/07 11:50:42 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/07 14:03:28 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int export_update(char **env, char *text)
 		return (1);
 	if (ft_strnstr(text, "=", ft_strlen(text)))
 		is_equal_sign = 1;
-	if (!env_update(env, name, value))
+	if (!env_update(env, name, value, is_equal_sign))
 		return (1);
 	free(name);
 	free(value);

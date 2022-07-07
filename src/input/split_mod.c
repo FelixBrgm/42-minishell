@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 17:38:23 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/06 13:58:27 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/07 18:38:03 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,16 @@
 
 char	*skip_char(char *str, char c)
 {
-	while (*str == c && *str != '\0')
+	int	i;
+
+	i = 0;
+	while (str != NULL && *str == c && *str != '\0')
+	{
 		str++;
+		i++;
+		if (c == '|' && i > 1)
+			return (NULL);
+	}
 	return (str);
 }
 
@@ -101,9 +109,14 @@ int	word_count(char *str, char c)
 	int	count;
 
 	count = 0;
-	while (*(str) != '\0')
+	while (*str != '\0')
 	{
 		str = skip_char(str, c);
+		if (str == NULL && c == '|')
+		{
+			free(str);
+			return (0);
+		}
 		if (*str != '\0')
 			count++;
 		str = skip_word(str, c);
