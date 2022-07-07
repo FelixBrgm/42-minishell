@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 11:31:21 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/06 15:51:40 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/07 11:51:47 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char **env_get(char **env, char *name)
  * @param value 
  * @return char** to current changed variable
  */
-char **env_update(char **env, char *name, char *value)
+char **env_update(char **env, char *name, char *value, int equal_sign)
 {
 	char **temp;
 	char	*combined;
@@ -57,7 +57,7 @@ char **env_update(char **env, char *name, char *value)
 	if (temp)
 	{
 		free(*temp);
-		if (*value == '\0')
+		if (*value == '\0' && equal_sign == 0)
 			*temp = ft_strdup(name);
 		else
 			*temp = ft_strjoin_free(ft_strjoin(name, "="), value);
@@ -68,7 +68,7 @@ char **env_update(char **env, char *name, char *value)
 		temp = env_extend(env);
 		if(!temp)
 			return (NULL);
-		if (*value == '\0')
+		if (*value == '\0' && equal_sign == 0)
 			*temp = ft_strdup(name);
 		else
 			*temp = ft_strjoin_free(ft_strjoin(name, "="), value);

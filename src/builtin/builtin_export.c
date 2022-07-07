@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:53:48 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/06 17:31:03 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/07 11:50:42 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,18 @@ static int export_update(char **env, char *text)
 {
 	char *name;
 	char *value;
+	int		is_equal_sign;
 
+	is_equal_sign = 0;
 	name = NULL;
 	value = NULL;
 	name = convert_to_name(text);
 	value = convert_to_value(text);
+	printf("NAME: %s VALUE: %s", name, value);
 	if (ft_protect(2, name, value))
 		return (1);
+	if (ft_strnstr(text, "=", ft_strlen(text)))
+		is_equal_sign = 1;
 	if (!env_update(env, name, value))
 		return (1);
 	free(name);
@@ -80,7 +85,7 @@ char *convert_to_name(char *text)
 		return (NULL);
 	while (temp[i] && temp[i] != '=')
 		i++;
-	// res = (ft_strdup_i(temp, i));
+	res = (ft_strdup_i(temp, i));
 	free(temp);
 	return (res);
 }
@@ -106,7 +111,7 @@ char *convert_to_value(char *text)
 		return (NULL);
 	while (temp[i] && temp[i] != '=')
 		i++;
-	// res = (ft_strdup_i(&temp[i + 1], ft_strlen(temp) - i));
+	res = (ft_strdup_i(&temp[i + 1], ft_strlen(temp) - i));
 		free(temp);
 	return (res);
 }
