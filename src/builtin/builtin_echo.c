@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: felixbruggemann <felixbruggemann@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 17:08:56 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/06 13:38:11 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/08 01:42:32 by felixbrugge      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,15 @@ int	builtin_echo(char **cmd)
 	
 	n = 0;
 	j = 1;
+	if (!cmd)
+		return (1);
+	while (cmd[j] && ft_strncmp(cmd[j], "-n", 3) == 0)
+	{
+		n = i;
+		j++;
+	}
 	while (cmd[j])
 	{
-		if (ft_strncmp(cmd[j], "-n", 3) == 0)
-		{
-			n = 1;
-			j++;
-		}
 		i = 0;
 		while(cmd[j][i])
 		{
