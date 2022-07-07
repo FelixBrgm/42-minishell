@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   utils_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: felixbruggemann <felixbruggemann@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 11:31:21 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/07 14:10:23 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/08 01:59:10 by felixbrugge      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
+
+extern int exit_code;
+
 /**
  * @brief Gets current location of the searched name
  * 
@@ -88,7 +91,10 @@ char *env_get_value(char **env, char *name)
 	char	**temp;
 	char	*variable;
 	int		i;
-
+	
+	if (ft_strncmp(name, "?", 1) == 0)
+		return (ft_strjoin_free(ft_itoa(exit_code), &name[1]));
+	printf("HELLO\n");
 	temp = NULL;
 	temp = env_get(env, name);
 	if (!temp)
