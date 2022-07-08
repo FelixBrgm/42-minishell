@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 15:34:17 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/07 13:45:31 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/08 15:57:39 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,15 @@ int		dup2_close(int fd, int fd2);
 void	perror_exit(char *str);
 int		child_need_fork(char **cmd);
 
-void	child_exec(t_child *child, char **env, int free_pipe)
+int	child_exec(t_child *child, char **env, int free_pipe)
 {
 	int	pid;
 
-	pid = 0;
+	pid = -1;
 	if (child_need_fork(child->cmd))
 		pid = fork();
 	if (pid != 0)
-	{
-		// waitpid(pid, ex_status, 0);
-		return ;
-	}
+		return (pid);
 	close(free_pipe);
 	if (child->fd_in != -1 && !child->limiter && dup2_close(child->fd_in, STDIN_FILENO))
 		perror_exit("Error fd_in");
@@ -45,7 +42,7 @@ void	child_exec(t_child *child, char **env, int free_pipe)
 	if (child->limiter)
 	{
 		limiter_exec(child);
-		return ;
+		exit(0);
 	}
 	else if(builtin_is_cmd(child->cmd, env))
 	{
@@ -57,7 +54,7 @@ void	child_exec(t_child *child, char **env, int free_pipe)
 		}
 		if (child_need_fork(child->cmd))
 			exit(0);
-		return ;
+		return 0;
 	}
 	else
 	{
