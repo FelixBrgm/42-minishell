@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   limiter_exec.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 15:36:11 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 17:00:03 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/08 14:36:11 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	limiter_exec(t_child *child)
 		free(temp);
 		temp = readline("> ");
 	}
-	printf("%s", res);
+	if (res)
+		printf("%s", res);
 	free(temp);
 	free(res);
 	exit(0);
