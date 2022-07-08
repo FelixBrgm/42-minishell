@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child_where.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: felixbruggemann <felixbruggemann@studen    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 11:44:43 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 00:01:09 by felixbrugge      ###   ########.fr       */
+/*   Updated: 2022/07/07 20:33:58 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ char	*child_where( char *cmd,char **env)
 
 	paths = where_get_paths(env);
 	i = 0;
+	if (!paths && ft_strchr(cmd, '/'))
+		return (cmd);
 	if (!paths)
 		return (ft_strjoin("./", cmd));
 	while (paths && paths[i])
