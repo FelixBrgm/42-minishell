@@ -4,3 +4,4 @@ TODO:
 $? handling
 Signals
 echo errors with the-n
+chage global variable to g_

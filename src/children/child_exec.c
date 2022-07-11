@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 15:34:17 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/10 12:29:32 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/11 15:39:28 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,17 @@ int		open_tmp_read(void);
 
 //fix not forking when input command was "$"
 
-void	child_exec(t_child *child, char **env, int free_pipe)
+int	child_exec(t_child *child, char **env, int free_pipe)
 {
-	int		pid;
-	char	*path;
-	pid = 0;
+	int	pid;
+
+	pid = -1;
 	if (child_need_fork(child->cmd))
 		pid = fork();
 	if (pid != 0)
-	{
-		// waitpid(pid, ex_status, 0);
-		return ;
-	}
-	if (free_pipe != -1)
-		close(free_pipe);
-	if (child->fd_in != -1 && dup2_close(child->fd_in, STDIN_FILENO))
+		return (pid);
+	close(free_pipe);
+	if (child->fd_in != -1 && !child->limiter && dup2_close(child->fd_in, STDIN_FILENO))
 		perror_exit("Error fd_in");
 	if (child->fd_out != -1 && dup2_close(child->fd_out, STDOUT_FILENO))
 		perror_exit("Error fd_out");
@@ -58,7 +54,7 @@ void	child_exec(t_child *child, char **env, int free_pipe)
 		}
 		if (child_need_fork(child->cmd))
 			exit(0);
-		return ;
+		return 0;
 	}
 	else
 	{
