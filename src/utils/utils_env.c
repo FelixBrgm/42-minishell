@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: felixbruggemann <felixbruggemann@studen    +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 11:31:21 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/08 01:59:10 by felixbrugge      ###   ########.fr       */
+/*   Updated: 2022/07/10 12:24:26 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
+void	print_split(char **str);
 extern int exit_code;
 
 /**
@@ -92,9 +93,8 @@ char *env_get_value(char **env, char *name)
 	char	*variable;
 	int		i;
 	
-	if (ft_strncmp(name, "?", 1) == 0)
+	if (name && ft_strncmp(name, "?", 1) == 0)
 		return (ft_strjoin_free(ft_itoa(exit_code), &name[1]));
-	printf("HELLO\n");
 	temp = NULL;
 	temp = env_get(env, name);
 	if (!temp)

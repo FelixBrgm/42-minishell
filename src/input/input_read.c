@@ -6,16 +6,18 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:22:56 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 20:58:25 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/09 15:22:12 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "input.h"
 
-void	input_read(t_global *global)
+int	input_read(t_global *global)
 {
 	global->input = readline("minishell-6.9 ");
+	//check if just a new line
 	add_history(global->input);
-	// printf("input: %s\n", global->input);
-	input_parse(global);
+	if (input_parse(global) == 1)
+		return (1);
+	return (0);
 }

@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   children.h                                         :+:      :+:    :+:   */
+/*   set_cmds.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/02 16:25:31 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/10 09:28:29 by dhamdiev         ###   ########.fr       */
+/*   Created: 2022/07/08 19:22:37 by dhamdiev          #+#    #+#             */
+/*   Updated: 2022/07/10 11:35:07 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_CHIDLREN_H
-# define MINISHELL_CHIDLREN_H
+#include "input.h"
 
-# include "../../minishell.h"
-# include "../builtin/builtin.h"
+void	clear_and_set_cmds(char **split_input, t_global *global)
+{
+	int		i;
+	t_child	*tmp;
 
-void	child_exec(t_child *child, char **env, int free_pipe);
-int		limiter_exec(t_child *child, char **env);
-void	children_free(t_global *global);
-char	*child_where( char *cmd,char **paths);
-char	**get_paths(char **env);
-char	*get_cmd(char *str);
+	i = 0;
+	tmp = global->children_head;
+	while (tmp != NULL)
+	{
+		if (tmp->limiter.lim == NULL)
+		{
 
-#endif
+			tmp->cmd = ft_split(split_input[i], ' ');
+			tmp ->cmd = input_rem_quotes(tmp->cmd);
+			i++;
+		}
+		tmp = tmp->next;
+	}
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_sanitize.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: felixbruggemann <felixbruggemann@studen    +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 02:42:29 by felixbrugge       #+#    #+#             */
-/*   Updated: 2022/07/08 03:48:44 by felixbrugge      ###   ########.fr       */
+/*   Updated: 2022/07/08 16:39:43 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static char *add_spaces(char *input)
     ft_strlcpy(temp, input, ft_strlen(input));
     if (!temp)
         return (NULL);
-    input_iter_brackets(temp, &add_spaces_iter, "\'\"", &i);
+    input_iter_brackets(temp, &add_spaces_iter, "\"\'", &i);
     return (temp);
 }
 

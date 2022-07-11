@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:21:55 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/07 20:00:54 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/10 10:03:20 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,6 @@ void	clear_input(char **input, char **env)
 	{
 		input[i] = rem_redirs(input[i]);
 		input[i] = set_vars(input[i], env);
-		// sleep(100);
 		input[i] = rem_quotes(input[i]);
 		i++;
 	}

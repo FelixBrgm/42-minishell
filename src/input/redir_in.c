@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 19:18:45 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/06 14:01:46 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/08 20:50:13 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,8 @@
 
 int	is_redir_in(char *str)
 {
-	int	i;
-	int	j;
-	char	**tmp;
-
-	tmp = split_mod(str, ' ');
-	j = split_len(tmp) - 1;
-	while (j >= 0)
-	{
-		i = 0;
-		while (tmp[j][i] != '\0')
-		{
-			if (ft_strlen(tmp[j]) == 1 && tmp[j][i] == '<')
-			{
-				free_split(tmp);
-				return (j);
-			}
-			i++;
-		}
-		j--;
-	}
-	free_split(tmp);
+	if (ft_strlen(str) == 1 && str[0] == '<')
+		return (1);
 	return (-1);
 }
 
@@ -62,4 +43,18 @@ char	*rem_redir_in(char *str)
 	if (str != NULL)
 		free(str);
 	return (ret);
+}
+
+int	is_redir_in_split(char **str)
+{
+	int	i;
+
+	i = split_len(str) - 1;
+	while (str != NULL && i >= 0)
+	{
+		if (ft_strlen(str[i]) == 1 && str[i][0] == '<')
+			return (i);
+		i--;
+	}
+	return (-1);
 }

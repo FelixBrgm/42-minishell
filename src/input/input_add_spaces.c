@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:21:55 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/06 18:27:31 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/10 12:23:35 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,12 +122,17 @@ int	put_spaces(char *ret_str, char *str, int *i, int *j)
 	}
 	else if (tmp_i == -1)
 	{
-		printf("SYNTAX ERROR\n");
-		free(str);
-		free(ret_str);
+		printf("Syntax error in redirs (add_spaces())\n");
+		ft_protect(3, str, ret_str, NULL);
 		return (-1);
 	}
 	return (0);
+}
+
+void	free_double(char *str1, char *str2)
+{
+	free(str1);
+	free(str2);
 }
 
 char	*add_spaces(char *str)
@@ -140,13 +145,19 @@ char	*add_spaces(char *str)
 	j = 0;
 	ret_str = malloc((len_after_adding_spaces(str) + 1) * sizeof(char));
 	if (ret_str == NULL)
+	{
+		free(str);
 		return (NULL);
+	}
 	while (str[i] != '\0')
 	{
 		copy_skip_squotes(ret_str, str, &i, &j);
 		copy_skip_dquotes(ret_str, str, &i, &j);
 		if (put_spaces(ret_str, str, &i, &j) == -1)
+		{
+			// free_double(str, ret_str);
 			return (NULL);
+		}
 		ret_str[j++] = str[i++];
 	}
 	ret_str[j] = '\0';
