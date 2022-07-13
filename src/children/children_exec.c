@@ -6,11 +6,12 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:26:52 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/13 12:42:31 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/13 13:16:40 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "children.h"
+
 void	setup_pipes_normal(int *fd_current0, int *fd_current1, int fd_temp, t_child *child);
 void	setup_pipes_last(int fd_current0, t_child *child);
 int		cmd_count(t_global *global);
@@ -18,6 +19,7 @@ int		dup2_close(int fd, int fd2);
 int		child_exec_set_file_in_fd(char *file);
 int		child_exec_set_file_out_trunc_fd(char *file);
 int		child_exec_set_file_out_app_fd(char *file);
+int		open_tmp_read(void);
 
 void	children_exec(t_global *global)
 {
@@ -41,20 +43,39 @@ void	children_exec(t_global *global)
 		{
 			if (builtin_is_cmd(tmp->cmd, global->env))
 			{
-				if (tmp->fd_in != -1 && dup2_close(tmp->fd_in, STDIN_FILENO))
-					perror_exit("Error fd_in");
-				if (tmp->fd_out != -1 && dup2_close(tmp->fd_out, STDOUT_FILENO))
-					perror_exit("Error fd_out");
-				if (tmp->file_in && child_exec_set_file_in_fd(tmp->file_in))
-					perror_exit("Error file_in");
-				if (tmp->prev && tmp->prev->limiter.lim != NULL && tmp->limiter.lim == NULL && dup2_close(open_tmp_read(), STDIN_FILENO))
-					perror_exit("Error here_doc");
-				if (tmp->file_out_trunc && child_exec_set_file_out_trunc_fd(tmp->file_out_trunc))
-					perror_exit("Error file_out_trunc");
-				if (tmp->file_out_app && child_exec_set_file_out_app_fd(tmp->file_out_app))
-					perror_exit("Error file_out_app");
 				infd_tmp = dup(STDIN_FILENO);
 				outfd_tmp = dup(STDOUT_FILENO);
+				if (tmp->fd_in != -1 && dup2_close(tmp->fd_in, STDIN_FILENO))
+				{
+					perror("Error fd_in");
+					continue ;
+				}
+				if (tmp->fd_out != -1 && dup2_close(tmp->fd_out, STDOUT_FILENO))
+				{
+					perror("Error fd_out");
+					continue ;
+				}
+				if (tmp->file_in && child_exec_set_file_in_fd(tmp->file_in))
+				{
+					perror("Error file_in");
+					continue ;
+				}
+				if (tmp->prev && tmp->prev->limiter.lim != NULL && tmp->limiter.lim == NULL && dup2_close(open_tmp_read(), STDIN_FILENO))
+				{
+					perror("Error here_doc");
+					continue ;
+				}
+				if (tmp->file_out_trunc && child_exec_set_file_out_trunc_fd(tmp->file_out_trunc))
+				{
+					perror("Error file_out_trunc");
+					continue ;
+				}
+				if (tmp->file_out_app && child_exec_set_file_out_app_fd(tmp->file_out_app))
+				{
+					perror("Error file_out_app");
+					continue ;
+				}
+				dup2(infd_tmp, STDIN_FILENO);
 				builtin_exec(tmp, global->env);
 				dup2_close(infd_tmp, STDIN_FILENO);
 				dup2_close(outfd_tmp, STDOUT_FILENO);
