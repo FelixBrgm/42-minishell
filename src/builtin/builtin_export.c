@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:53:48 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/07 20:22:07 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/12 21:23:56 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 static int	builtin_export_print(char **env);
 static int	export_update(char **env, char *text);
-char *convert_to_name(char *text);
-char *convert_to_value(char *text);
+char 		*convert_to_name(char *text);
+char 		*convert_to_value(char *text);
+
 /**
  * @brief Mimiks the functionality from export 
  * 
@@ -23,16 +24,20 @@ char *convert_to_value(char *text);
  * @param env 
  * @return int 
  */
-int	builtin_export(char	**cmd, char **env)
+int	builtin_export(t_child *child, char **env)
 {
 	int	i;
 
-	if (!cmd[1])
+	if (close(STDIN_FILENO) < 0)
+		return (1);
+	if (!child->cmd[1])
 		return (builtin_export_print(env));
+	if (close(STDOUT_FILENO) < 0)
+		return (1);
 	i = 1;
-	while (cmd[i])
+	while (child->cmd[i])
 	{
-		export_update(env, cmd[i]);
+		export_update(env, child->cmd[i]);
 		i++;
 	}
 	// is it only export
@@ -142,5 +147,7 @@ static int	builtin_export_print(char **env)
 		printf("\n");
 		j++;
 	}
+	if (close(STDOUT_FILENO) < 0)
+		return (1);
 	return (0);
 }

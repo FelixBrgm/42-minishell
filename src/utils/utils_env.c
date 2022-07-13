@@ -6,14 +6,13 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 11:31:21 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/10 12:24:26 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/11 17:45:14 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
 void	print_split(char **str);
-extern int exit_code;
 
 /**
  * @brief Gets current location of the searched name
@@ -93,8 +92,10 @@ char *env_get_value(char **env, char *name)
 	char	*variable;
 	int		i;
 	
+	// if (name && ft_strncmp(name, "?", 1) == 0)
+	// 	return (ft_strjoin_free(ft_itoa(exit_code), &name[1]));
 	if (name && ft_strncmp(name, "?", 1) == 0)
-		return (ft_strjoin_free(ft_itoa(exit_code), &name[1]));
+		return (ft_itoa(WEXITSTATUS(exit_code)));
 	temp = NULL;
 	temp = env_get(env, name);
 	if (!temp)

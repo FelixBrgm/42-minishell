@@ -3,40 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_exec.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 17:06:15 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/06 14:02:25 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/12 21:20:05 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-extern int exit_code;
-
 /**
  * @brief Executes a built in command
  * 
- * @param cmd The command like { "/bin/ls" , "params", ...} 
+ * @param child The child pointer with file descriptors 
  * @param env environment from global
  * @return 0 when ok and 1 when error
  */
-int	builtin_exec(char **cmd, char **env)
+int	builtin_exec(t_child *child, char **env)
 {
-	if (ft_strncmp(cmd[0], "echo" , ft_strlen(cmd[0])) == 0)
-		return (builtin_echo(cmd));
-	else if (ft_strncmp(cmd[0], "pwd" , ft_strlen(cmd[0])) == 0)
-		return (builtin_pwd());
-	else if (ft_strncmp(cmd[0], "export" , ft_strlen(cmd[0])) == 0)
-		return (builtin_export(cmd, env));
-	else if (ft_strncmp(cmd[0], "env" , ft_strlen(cmd[0])) == 0)
-		return (builtin_env(env, cmd));
-	else if (ft_strncmp(cmd[0], "cd" , ft_strlen(cmd[0])) == 0)
-		return (builtin_cd(cmd, env));
-	else if (ft_strncmp(cmd[0], "unset" , ft_strlen(cmd[0])) == 0)
-		return (builtin_unset(cmd, env));
-	else if (ft_strncmp(cmd[0], "exit" , ft_strlen(cmd[0])) == 0)
-		return (builtin_exit(cmd));
+	if (ft_strncmp(child->cmd[0], "echo", ft_strlen(child->cmd[0])) == 0)
+		return (builtin_echo(child));
+	else if (ft_strncmp(child->cmd[0], "pwd", ft_strlen(child->cmd[0])) == 0)
+		return (builtin_pwd(child));
+	else if (ft_strncmp(child->cmd[0], "export", ft_strlen(child->cmd[0])) == 0)
+		return (builtin_export(child, env));
+	else if (ft_strncmp(child->cmd[0], "env", ft_strlen(child->cmd[0])) == 0)
+		return (builtin_env(env, child));
+	else if (ft_strncmp(child->cmd[0], "cd", ft_strlen(child->cmd[0])) == 0)
+		return (builtin_cd(child, env));
+	else if (ft_strncmp(child->cmd[0], "unset", ft_strlen(child->cmd[0])) == 0)
+		return (builtin_unset(child, env));
+	else if (ft_strncmp(child->cmd[0], "exit", ft_strlen(child->cmd[0])) == 0)
+		return (builtin_exit(child));
 	else 
 		return (1);
 }

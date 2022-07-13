@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 13:08:21 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/08 20:41:33 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/12 21:39:06 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ t_child	*dlistnew(char *f_in, char *f_out_t, char *f_out_a, char *lim, int expan
 	if (node == NULL)
 		return (NULL);
 	node->cmd = NULL;
-	node->fd_in = 0;
-	node->fd_out = 0;
+	node->fd_in = -1;
+	node->fd_out = -1;
 	node->file_in = f_in;
 	node->file_out_trunc = f_out_t;
 	node->file_out_app = f_out_a;

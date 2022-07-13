@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:21:55 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/10 12:23:35 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/12 18:54:38 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,15 @@ int	input_parse(t_global *global)
 	global->app_file_list_head = NULL;
 	input_copy = add_spaces(global->input);
 	global->input = ft_strdup(input_copy);
-	split_input = ft_split(global->input, '|');
-	split_input = input_expand(split_input, global->env);
-	if (split_input == NULL || set_files(split_input, global)) // syntax error
+	split_input = split_mod(global->input, '|');
+	// split_input = input_expand(split_input, global->env);
+
+	if (split_input == NULL || set_files(split_input, global) || split_input[0] == NULL)
+	{
+		printf("Syntax error \n");
 		return 1;
+	} // syntax error
+	printf("HEY\n");
 	split_input = input_clear_redirs(split_input);
 	clear_and_set_cmds(split_input, global);
 	// debug

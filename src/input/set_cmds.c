@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:22:37 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/10 11:35:07 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/12 16:28:25 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ void	clear_and_set_cmds(char **split_input, t_global *global)
 		if (tmp->limiter.lim == NULL)
 		{
 
-			tmp->cmd = ft_split(split_input[i], ' ');
-			tmp ->cmd = input_rem_quotes(tmp->cmd);
+			tmp->cmd = split_mod(split_input[i], ' ');
+			tmp->cmd = input_expand(tmp->cmd, global->env);
+			tmp->cmd = input_rem_quotes(tmp->cmd);
 			i++;
 		}
 		tmp = tmp->next;

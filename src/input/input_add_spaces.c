@@ -6,34 +6,34 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:21:55 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/10 12:23:35 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/12 16:57:38 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "input.h"
 
 //if portion of the str staring from index i has redirection returned value is > -1
+//return 0 == single redir
+//return 1 == double redir
 //return -1 == error
 //return -2 == no redirections
 int	is_valid_redir(char *str, int i)
 {
 	if (str[i] == '<')
 	{
-		if (str[i + 1] == '>')
-			return (-1);
-		if (str[i + 1] == '<' && str[i + 2] != '<' && str[i + 2] != '>')
-			return (1);
 		if (str[i + 1] != '<' && str[i + 1] != '>')
 			return (0);
+		if (str[i + 1] == '<' && str[i + 2] != '<' && str[i + 2] != '>')
+			return (1);
+		return (-1);
 	}
 	if (str[i] == '>')
 	{
-		if (str[i + 1] == '<')
-			return (-1);
-		if (str[i + 1] == '>' && str[i + 2] != '<' && str[i + 2] != '>')
-			return (1);
 		if (str[i + 1] != '<' && str[i + 1] != '>')
 			return (0);
+		if (str[i + 1] == '>' && str[i + 2] != '<' && str[i + 2] != '>')
+			return (1);
+		return (-1);
 	}
 	return (-2);
 }
@@ -156,6 +156,7 @@ char	*add_spaces(char *str)
 		if (put_spaces(ret_str, str, &i, &j) == -1)
 		{
 			// free_double(str, ret_str);
+			free(ret_str);
 			return (NULL);
 		}
 		ret_str[j++] = str[i++];

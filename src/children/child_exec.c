@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 15:34:17 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/11 15:39:28 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/12 21:28:58 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,20 @@ int		open_tmp_read(void);
 
 //fix not forking when input command was "$"
 
-int	child_exec(t_child *child, char **env, int free_pipe)
+int	child_exec(t_child *child, char **env, int free_pipe, int *this_pid)
 {
-	int	pid;
+	int		pid;
+	char	*path;
 
-	pid = -1;
-	if (child_need_fork(child->cmd))
-		pid = fork();
+	pid = 0;
+	// if (child_need_fork(child->cmd))
+	pid = fork();
 	if (pid != 0)
 		return (pid);
-	close(free_pipe);
-	if (child->fd_in != -1 && !child->limiter && dup2_close(child->fd_in, STDIN_FILENO))
+	*this_pid = pid;
+	if (free_pipe != -1)
+		close(free_pipe);
+	if (child->fd_in != -1 && dup2_close(child->fd_in, STDIN_FILENO))
 		perror_exit("Error fd_in");
 	if (child->fd_out != -1 && dup2_close(child->fd_out, STDOUT_FILENO))
 		perror_exit("Error fd_out");
@@ -46,28 +49,28 @@ int	child_exec(t_child *child, char **env, int free_pipe)
 		perror_exit("Error file_out_app");
 	if(builtin_is_cmd(child->cmd, env))
 	{
-		if (builtin_exec(child->cmd, env))
+		if (builtin_exec(child, env))
 		{
 			printf("Error builtin_exec\n");
-			if (child_need_fork(child->cmd))
-				exit(1);
+			// if (child_need_fork(child->cmd))
+			exit(1);
 		}
-		if (child_need_fork(child->cmd))
-			exit(0);
-		return 0;
+		// if (child_need_fork(child->cmd))
+		exit(0);
 	}
 	else
 	{
 		// fprintf(stderr, "before %s\n", child->cmd[0]);
 		if (child->cmd)
-			path = child_where(get_cmd(child->cmd[0]), get_paths(env));
+			path = child_where(child->cmd[0], env);
 		else
 			path = NULL;
-		fprintf(stderr, "%s\n", path);
+		// fprintf(stderr, "%s\n", path);
 		// sleep(100);
 		execve(path, child->cmd, env);
 	}
 	perror_exit("Error execve");
+	return(0);
 }
 
 int	child_exec_set_file_in_fd(char *file)
@@ -75,8 +78,17 @@ int	child_exec_set_file_in_fd(char *file)
 	int	fd;
 	
 	fd = open(file, O_RDONLY);
-	if (fd < 0 || dup2_close(fd, STDIN_FILENO))
+	if (fd < 0)
+	{
+		fprintf(stderr, "open failed: file name %s\n", file);
 		return(1);
+	}
+
+	if (dup2_close(fd, STDIN_FILENO) < 0)
+	{
+		fprintf(stderr, "dup2 in file in failed\n");
+		return (1);
+	}
 	return (0);
 }
 
@@ -120,7 +132,7 @@ void	perror_exit(char *str)
 int	child_need_fork(char **cmd)
 {
 	if (cmd == NULL)
-		return (0);
+		return (1);
 	if (ft_strncmp(cmd[0], "export" , ft_strlen(cmd[0])) == 0 
 		&& cmd[1])
 		return (0);

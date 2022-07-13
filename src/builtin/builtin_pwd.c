@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:31:24 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 13:04:08 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/13 12:32:48 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@
  * 
  * @return int 
  */
-int	builtin_pwd(void)
+int	builtin_pwd(t_child *child)
 {
-	char	*res;
-	res = NULL;
-	res = getcwd(NULL, 0);
+	char	res[PATH_MAX];
+
+	getcwd(res, PATH_MAX);
 	printf("%s\n", res);
-	free(res);
+	if (close(STDIN_FILENO) < 0 && close(STDOUT_FILENO) < 0)
+		return (1);
 	return (0);
 }

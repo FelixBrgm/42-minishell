@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:15:45 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/11 15:35:41 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/12 21:29:04 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@
 // 	char	*file_out_app;
 // 	char	*limiter;
 // }				t_child;
+
+extern int exit_code;
 
 typedef struct s_limiter
 {
@@ -93,6 +95,7 @@ typedef struct s_global
 	t_child			*children_head;
 	t_file_node		*trunc_file_list_head;
 	t_file_node		*app_file_list_head;
+	int				this_pid;
 }				t_global;
  
 int		set_to_default(t_global	*global, char **env);
@@ -105,5 +108,6 @@ void	children_exec(t_global *global);
 
 void	global_free(t_global *global);
 // Built In
-int		builtin_exec(char **cmd, char **env);
+int	builtin_exec(t_child *child, char **env);
+
 #endif

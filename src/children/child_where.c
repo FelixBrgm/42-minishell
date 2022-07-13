@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 11:44:43 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/11 15:42:51 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/11 16:23:44 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ char	*child_where( char *cmd,char **env)
 		res = ft_strjoin(temp, cmd);
 		if (ft_strchr(cmd, '/') != 0)
 			res = ft_strdup(cmd);
-		fprintf(stderr, "res = %s\n", res);
 		if (access(res, X_OK) == 0)
 		{
 			i = 0;
