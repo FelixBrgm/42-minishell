@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_read.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:22:56 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/13 14:50:34 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/13 16:51:49 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,14 @@ int	input_read(t_global *global)
 	if (ft_strlen(global->input) > 0)
 		add_history(global->input);
 	else
+	{
+		if (global->input == NULL)
+		{
+			printf("exit\n");
+			exit(0);
+		}
 		return (1);
+	}
 	if (input_parse(global) == 1)
 		return (1);
 	return (0);
