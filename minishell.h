@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:15:45 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/08 15:28:47 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/12 21:29:04 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,59 @@
 # include "readline/readline.h"
 # include <sys/errno.h>
 
+// typedef struct s_child
+// {
+// 	char	**cmd;
+// 	char	**shell;
+// 	int		fd_in;
+// 	int		fd_out;
+// 	char	*file_in;
+// 	char	*file_out_trunc;
+// 	char	*file_out_app;
+// 	char	*limiter;
+// }				t_child;
+
+extern int exit_code;
+
+typedef struct s_limiter
+{
+	char	*lim;
+	int		expand;
+}				t_limiter;
+
+typedef struct s_file_node
+{
+	char				*path;
+	struct s_file_node	*next;
+	
+}				t_file_node;
+
 typedef struct s_child
 {
-	char	**cmd;
-	char	**shell;
-	int		fd_in;
-	int		fd_out;
-	char	*file_in;
-	char	*file_out_trunc;
-	char	*file_out_app;
-	char	*limiter;
+	char			**cmd;
+	int				fd_in;
+	int				fd_out;
+	char			*file_in;
+	char			*file_out_trunc;
+	char			*file_out_app;
+	t_limiter		limiter;
+	struct s_child	*next;
+	struct s_child	*prev;
+	
 }				t_child;
+
+// typedef struct s_global
+// {
+// 	// CONFIG
+// 	char			*promt;
+// 	int				interactive_mode;
+// 	int				ex_status;
+// 	char			**env;
+// 	struct termios	old_termios;
+// 	//Runtime
+// 	char			*input;
+// 	t_child			**children;
+// }				t_global;
 
 typedef struct s_global
 {
@@ -50,16 +92,22 @@ typedef struct s_global
 	struct termios	old_termios;
 	//Runtime
 	char			*input;
-	t_child			**children;
+	t_child			*children_head;
+	t_file_node		*trunc_file_list_head;
+	t_file_node		*app_file_list_head;
+	int				this_pid;
 }				t_global;
  
 int		set_to_default(t_global	*global, char **env);
 
-void	input_read(t_global *global);
+int		input_read(t_global *global);
+
+int		open_files(t_file_node *app_files, t_file_node *trunc_files);
 
 void	children_exec(t_global *global);
 
 void	global_free(t_global *global);
 // Built In
-int		builtin_exec(char **cmd, char **env);
+int	builtin_exec(t_child *child, char **env);
+
 #endif

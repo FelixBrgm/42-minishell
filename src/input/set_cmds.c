@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_pwd.c                                      :+:      :+:    :+:   */
+/*   set_cmds.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/04 14:31:24 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/13 12:32:48 by dhamdiev         ###   ########.fr       */
+/*   Created: 2022/07/08 19:22:37 by dhamdiev          #+#    #+#             */
+/*   Updated: 2022/07/12 16:28:25 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtin.h"
+#include "input.h"
 
-/**
- * @brief gives back the current absolute path
- * 
- * @return int 
- */
-int	builtin_pwd(t_child *child)
+void	clear_and_set_cmds(char **split_input, t_global *global)
 {
-	char	res[PATH_MAX];
+	int		i;
+	t_child	*tmp;
 
-	getcwd(res, PATH_MAX);
-	printf("%s\n", res);
-	if (close(STDIN_FILENO) < 0 && close(STDOUT_FILENO) < 0)
-		return (1);
-	return (0);
+	i = 0;
+	tmp = global->children_head;
+	while (tmp != NULL)
+	{
+		if (tmp->limiter.lim == NULL)
+		{
+
+			tmp->cmd = split_mod(split_input[i], ' ');
+			tmp->cmd = input_expand(tmp->cmd, global->env);
+			tmp->cmd = input_rem_quotes(tmp->cmd);
+			i++;
+		}
+		tmp = tmp->next;
+	}
 }

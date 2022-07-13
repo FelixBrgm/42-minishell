@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:14:50 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/05 21:21:19 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/10 12:18:51 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ int	main(int argc, char **argv, char **env)
 	t_global	global;
 
 	set_to_default(&global, env);
-
 	while (1)
 	{
-		input_read(&global);
-		children_exec(&global);
+		if (input_read(&global) == 0)
+		{
+			open_files(global.app_file_list_head, global.trunc_file_list_head);
+			children_exec(&global);;
+		}
 	}
 	// set_to_default(global);
 	// while (1)

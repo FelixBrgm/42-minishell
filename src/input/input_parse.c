@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_parse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:21:55 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/08 15:56:18 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/11 15:35:57 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,6 @@ void	clear_input(char **input, char **env)
 	{
 		input[i] = rem_redirs(input[i]);
 		input[i] = set_vars(input[i], env);
-		// sleep(100);
 		input[i] = rem_quotes(input[i]);
 		i++;
 	}

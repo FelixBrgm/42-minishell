@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   children.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:25:31 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/08 15:39:18 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/11 16:44:16 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@
 # include "../../minishell.h"
 # include "../builtin/builtin.h"
 
-int	child_exec(t_child *child, char **env, int free_pipe);
-int		limiter_exec(t_child *child);
+int		child_exec(t_child *child, char **env, int free_pipe, int *this_pid);
+int		limiter_exec(t_child *child, char **env);
 void	children_free(t_global *global);
 char	*child_where( char *cmd,char **env);
+char	**get_paths(char **env);
+char	*get_cmd(char *str);
+
 #endif

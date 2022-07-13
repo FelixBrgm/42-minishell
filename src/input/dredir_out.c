@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 19:16:40 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/06 14:01:28 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/08 20:50:00 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,8 @@
 
 int	is_dredir_out(char *str)
 {
-	int	i;
-	int	j;
-	char	**tmp;
-
-	tmp = split_mod(str, ' ');
-	j = split_len(tmp) - 1;
-	while (j >= 0)
-	{
-		i = 0;
-		while (tmp[j][i] != '\0')
-		{
-			if (ft_strlen(tmp[j]) == 2 && tmp[j][i] == '>' && tmp[j][i + 1] == '>')
-			{
-				free_split(tmp);
-				return (j);
-			}
-			i++;
-		}
-		j--;
-	}
-	free_split(tmp);
+	if (ft_strlen(str) == 2 && str[0] == '>' && str[1] == '>')
+		return (1);
 	return (-1);
 }
 
@@ -62,4 +43,18 @@ char	*rem_dredir_out(char *str)
 	if (str != NULL)
 		free(str);
 	return (ret);
+}
+
+int	is_dredir_out_split(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str != NULL && str[i] != NULL)
+	{
+		if (ft_strlen(str[i]) == 2 && str[i][0] == '>' && str[i][1] == '>')
+			return (i);
+		i++;
+	}
+	return (-1);
 }

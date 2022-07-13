@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:25:31 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/06 15:30:40 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/12 21:31:39 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@
 
 // Excecution
 int	builtin_is_cmd(char **cmd, char **env);
-int	builtin_exec(char **cmd, char **env);
+int	builtin_exec(t_child *child, char **env);
 
 // Shell Commands
-int	builtin_echo(char **cmd);
-int	builtin_cd(char **cmd, char **env);
-int	builtin_pwd(void);
-int	builtin_export(char	**cmd, char **env);
-int builtin_env(char **env, char **cmd);
-int	builtin_unset(char **cmd, char **env);
-int	builtin_exit(char **cmd);
+int	builtin_echo(t_child *child);
+int	builtin_cd(t_child *child, char **env);
+int	builtin_pwd(t_child *child);
+int	builtin_export(t_child *child, char **env);
+int builtin_env(char **env, t_child *child);
+int	builtin_unset(t_child *child, char **env);
+int	builtin_exit(t_child *child);
 
 #endif

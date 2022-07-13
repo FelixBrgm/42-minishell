@@ -6,11 +6,12 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 15:38:49 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/07 19:32:10 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/10 11:28:59 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "input.h"
+void	print_split(char **str);
 
 char	*get_var_name(char *str)
 {
@@ -76,6 +77,7 @@ char	*set_vars(char *str, char **env)
 	char	*ret_str;
 	int		i;
 	int		j;
+	char 	*value;
 	char	*var_name;
 	int		squote;
 	int		dquote;
@@ -95,8 +97,9 @@ char	*set_vars(char *str, char **env)
 		if (str[i] == '$' && squote == 0)
 		{
 			var_name = get_var_name(&(str[i + 1]));
-			ft_strlcpy(&(ret_str[j]), env_get_value(env, var_name), ft_strlen(env_get_value(env, var_name)) + 1);
-			j += ft_strlen(env_get_value(env, var_name));
+			value = ft_strdup(env_get_value(env, var_name));
+			ft_strlcpy(&(ret_str[j]), value, ft_strlen(value) + 1);
+			j += ft_strlen(value);
 			i += ft_strlen(var_name);
 			free(var_name);
 		}
@@ -109,7 +112,6 @@ char	*set_vars(char *str, char **env)
 			dquote = 0;
 	}
 	ret_str[j] = '\0';
-	free(str);
 	return (ret_str);
 }
 
