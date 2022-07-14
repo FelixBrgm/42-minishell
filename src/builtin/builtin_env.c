@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 13:57:45 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/12 21:31:55 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/13 15:24:03 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
  * @brief Mimics the functionality of env without params and options
  * 
  * @param env 
- * @return int 0 = ok | 1 = error
+ * @return int || 0 = SUCCESS | 1 = ERROR
  */
-int builtin_env(char **env, t_child *child)
+int	builtin_env(char **env, t_child *child)
 {
 	int	i;
 
