@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 15:34:17 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/13 17:04:34 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/14 14:20:39 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	child_exec(t_child *child, char **env, int free_pipe, int *this_pid)
 	if (child->prev && child->prev->limiter.lim != NULL && child->limiter.lim == NULL && dup2_close(open_tmp_read(), STDIN_FILENO))
 		perror_exit("Error here_doc");
 	if (child->file_out_trunc && child_exec_set_file_out_trunc_fd(child->file_out_trunc))
-		perror_exit("Error file_out_trunc");
+		perror_exit("Error file_out_trunc after fork");
 	if (child->file_out_app && child_exec_set_file_out_app_fd(child->file_out_app))
 		perror_exit("Error file_out_app");
 	if(builtin_is_cmd(child->cmd, env))

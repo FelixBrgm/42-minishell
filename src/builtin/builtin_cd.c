@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 19:20:53 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/13 15:23:39 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/14 14:03:23 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int	builtin_cd(t_child *child, char **env)
 		return (1);
 	if (!child->cmd)
 		return (1);
-	if (!child->cmd[1])
-		return (0);
-	getcwd(temp, PATH_MAX);
-	env_update(env, "OLDPWD", temp, 0);
-	if (chdir(child->cmd[1]))
+	if (env_get_value(env, "PWD"))
+		env_update(env, "OLDPWD", env_get_value(env, "PWD") , 0);
+	if (!child->cmd[1] && env_get(env, "HOME"))
+		chdir(env_get_value(env, "HOME"));
+	else if (chdir(child->cmd[1]))
 	{
 		printf("cd: %s\n", child->cmd[1]);
 		perror(NULL);

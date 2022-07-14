@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:21:55 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/14 13:29:23 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/14 14:03:57 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ int	input_parse(t_global *global)
 	//printf("HEY\n");
 	split_input = input_clear_redirs(split_input);
 	clear_and_set_cmds(split_input, global);
-	// debug
-	print_children(global->children_head);
-	printf("App files\n");
-	print_files(global->app_file_list_head);
-	printf("Trunc files\n");
-	print_files(global->trunc_file_list_head);
+	// // debug
+	// print_children(global->children_head);
+	// printf("App files\n");
+	// print_files(global->app_file_list_head);
+	// printf("Trunc files\n");
+	// print_files(global->trunc_file_list_head);
 	return (0);
 }
 

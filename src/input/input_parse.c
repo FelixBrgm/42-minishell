@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:21:55 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/13 14:05:40 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/14 14:01:36 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	input_parse(t_global *global)
 	split_input = split_mod(global->input, '|');
 	split_input_copy = split_dup(split_input);
 	children_count = count_and_init_children(global, split_input);
-	printf("child count = %d\n", children_count);
+	//printf("child count = %d\n", children_count);
 	set_null_children(global, children_count);
 	split_input = sep_dredir_in(children_count, split_input);
 	if (split_input == NULL)
