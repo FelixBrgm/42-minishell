@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_unset.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 19:20:53 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/12 21:32:57 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/14 14:45:07 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@
  */
 int	builtin_unset(t_child *child, char **env)
 {
-	int	i;
-	int	c;
+	int		i;
+	int		c;
+	char	**temp;
 
 	if (close(STDIN_FILENO) < 0 && close(STDOUT_FILENO) < 0)
 		return (1);
-	char **temp;
 	if (!child->cmd)
 		return (1);
 	c = 1;
@@ -35,6 +35,8 @@ int	builtin_unset(t_child *child, char **env)
 	{
 		i = 1;
 		temp = env_get(env, child->cmd[c]);
+		if (!temp)
+			break ;
 		free(*temp);
 		while(temp[i])
 		{

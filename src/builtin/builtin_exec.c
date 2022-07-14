@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 17:06:15 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/14 13:46:33 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/14 15:00:45 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@
  */
 int	builtin_exec(t_child *child, char **env)
 {
-	if (ft_strncmp(child->cmd[0], "echo", ft_strlen("echo")) == 0)
+	if (ft_strncmp(child->cmd[0], "echo", ft_strlen("echo") + 1) == 0)
 		return (builtin_echo(child));
-	else if (ft_strncmp(child->cmd[0], "pwd", ft_strlen("pwd")) == 0)
+	else if (ft_strncmp(child->cmd[0], "pwd", ft_strlen("pwd") + 1) == 0)
 		return (builtin_pwd(child));
-	else if (ft_strncmp(child->cmd[0], "export", ft_strlen("export")) == 0)
+	else if (ft_strncmp(child->cmd[0], "export", ft_strlen("export") + 1) == 0)
 		return (builtin_export(child, env));
-	else if (ft_strncmp(child->cmd[0], "env", ft_strlen("env")) == 0)
+	else if (ft_strncmp(child->cmd[0], "env", ft_strlen("env") + 1) == 0)
 		return (builtin_env(env, child));
-	else if (ft_strncmp(child->cmd[0], "cd", ft_strlen("cd")) == 0)
+	else if (ft_strncmp(child->cmd[0], "cd", ft_strlen("cd") + 1) == 0)
 		return (builtin_cd(child, env));
-	else if (ft_strncmp(child->cmd[0], "unset", ft_strlen("unset")) == 0)
+	else if (ft_strncmp(child->cmd[0], "unset", ft_strlen("unset") + 1) == 0)
 		return (builtin_unset(child, env));
-	else if (ft_strncmp(child->cmd[0], "exit", ft_strlen("exit")) == 0)
+	else if (ft_strncmp(child->cmd[0], "exit", ft_strlen("exit") + 1) == 0)
 		return (builtin_exit(child));
 	else
 		return (1);
