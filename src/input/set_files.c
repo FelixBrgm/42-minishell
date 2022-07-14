@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:41:07 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/12 16:28:10 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/14 14:05:56 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	set_dredir_in(char	**tmp, t_global *global)
 {
 	int		j;
 	int		lim;
-	char	*file;
 	int		expand;
 
 	j = 0;
@@ -30,10 +29,8 @@ int	set_dredir_in(char	**tmp, t_global *global)
 			expand = 0;
 		else
 			expand = 1;
-		file = set_vars(tmp[j], global->env);
 		dlistadd_back(&global->children_head,
-			dlistnew(NULL, NULL, NULL, rem_quotes(file), expand));
-		free(file);
+			dlistnew(NULL, NULL, NULL, rem_quotes(tmp[j]), expand));
 	}
 	return (0);
 }
@@ -41,20 +38,13 @@ int	set_dredir_in(char	**tmp, t_global *global)
 int	set_redir_in(char **tmp, t_global *global)
 {
 	t_child	*last_child;
-	char	*file;
-	char	*tmp2;
 
 	last_child = dlistlast(global->children_head);
 	if (is_redir_in_split(tmp) != -1)
 	{
 		if (tmp[is_redir_in_split(tmp) + 1] == NULL)
 			return (1);
-		file = set_vars(tmp[is_redir_in_split(tmp) + 1], global->env);
-		tmp2 = file;
-		file = rem_quotes(file);
-		last_child->file_in = ft_strdup(file);
-		free(tmp2);
-		free(file);
+		last_child->file_in = rem_quotes(tmp[is_redir_in_split(tmp) + 1]);
 	}
 	return (0);
 }
@@ -63,7 +53,6 @@ int	dredir_out_check(char **tmp, int i, t_global *global)
 {
 	t_child	*last_child;
 	char	*file;
-	char	*tmp2;
 
 	last_child = dlistlast(global->children_head);
 	if (is_dredir_out(tmp[i]) != -1)
@@ -77,12 +66,9 @@ int	dredir_out_check(char **tmp, int i, t_global *global)
 			free(last_child->file_out_app);
 		if (tmp[i + 1] == NULL)
 			return (1);
-		file = set_vars(tmp[i + 1], global->env);
-		tmp2 = file;
-		file = rem_quotes(file);
+		file = rem_quotes(tmp[i + 1]);
 		last_child->file_out_app = ft_strdup(file);
 		listadd_back(&global->app_file_list_head, listnew(file));
-		free(tmp2);
 	}
 	return (0);
 }
@@ -91,7 +77,6 @@ int	redir_out_check(char **tmp, int i, t_global *global)
 {
 	t_child	*last_child;
 	char	*file;
-	char	*tmp2;
 
 	last_child = dlistlast(global->children_head);
 	if (is_redir_out(tmp[i]) != -1)
@@ -105,12 +90,9 @@ int	redir_out_check(char **tmp, int i, t_global *global)
 			free(last_child->file_out_trunc);
 		if (tmp[i + 1] == NULL)
 			return (1);
-		file = set_vars(tmp[i + 1], global->env);
-		tmp2 = file;
-		file = rem_quotes(file);
+		file = rem_quotes(tmp[i + 1]);
 		last_child->file_out_trunc = ft_strdup(file);
 		listadd_back(&global->trunc_file_list_head, listnew(file));
-		free(tmp2);
 	}
 	return (0);
 }

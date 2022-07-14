@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_parse_test.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:21:55 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/13 14:06:59 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/14 13:53:08 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	input_parse(t_global *global)
 	input_copy = add_spaces(global->input);
 	global->input = ft_strdup(input_copy);
 	split_input = split_mod(global->input, '|');
-	// split_input = input_expand(split_input, global->env);
+	split_input = input_expand(split_input, global->env);
 
 	if (split_input == NULL || set_files(split_input, global) || split_input[0] == NULL)
 	{
