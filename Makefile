@@ -20,7 +20,7 @@ INPUTCFILES := $(addprefix $(INPUT), $(INPUTCFILES))
 INPUTCFILES := $(addprefix $(SRC), $(INPUTCFILES))
 
 # CHILDREN
-CHILDRENCFILES := children_exec.c child_exec.c limiter_exec.c child_where.c children_free.c
+CHILDRENCFILES := children_exec.c child_exec.c limiter_exec.c child_where.c children_free.c child_exec_utils.c children_exec_utils.c
 CHILDRENCFILES := $(addprefix $(CHILDREN), $(CHILDRENCFILES))
 CHILDRENCFILES := $(addprefix $(SRC), $(CHILDRENCFILES))
 

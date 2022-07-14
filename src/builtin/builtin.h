@@ -6,12 +6,12 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:25:31 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/15 00:09:52 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/15 00:40:48 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILTIN_H
-# define BUILDIN_H
+# define BUILTIN_H
 
 # include "../../minishell.h"
 # include "../utils/utils.h"
