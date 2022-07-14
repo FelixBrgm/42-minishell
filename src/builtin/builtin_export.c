@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:53:48 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/12 21:23:56 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/14 12:16:14 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int export_update(char **env, char *text)
 	value = NULL;
 	name = convert_to_name(text);
 	value = convert_to_value(text);
-	printf("NAME: %s VALUE: %s", name, value);
+	//printf("NAME: %s VALUE: %s", name, value);
 	if (ft_protect(2, name, value))
 		return (1);
 	if (ft_strnstr(text, "=", ft_strlen(text)))

@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:21:55 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/14 13:53:08 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/14 14:06:54 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ int	input_parse(t_global *global)
 	split_input = input_clear_redirs(split_input);
 	clear_and_set_cmds(split_input, global);
 	// debug
-	//print_children(global->children_head);
-	// printf("App files\n");
-	// print_files(global->app_file_list_head);
-	// printf("Trunc files\n");
-	// print_files(global->trunc_file_list_head);
+	print_children(global->children_head);
+	printf("App files\n");
+	print_files(global->app_file_list_head);
+	printf("Trunc files\n");
+	print_files(global->trunc_file_list_head);
 	return (0);
 }
 

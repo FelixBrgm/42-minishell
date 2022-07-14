@@ -3,27 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 17:08:56 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/12 21:30:26 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/13 15:23:59 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
+static int	builtin_echo_print_words(char **text);
+
 /**
  * @brief Prints the given parameters already extended with env
  * 
  * @param cmd as {"echo", "VALUE", ... }
- * @return int 0 
+ * @return int || 0 = SUCCESS | 1 = ERROR
  */
 int	builtin_echo(t_child *child)
 {
-	int i;
 	int	j;
 	int	n;
-	
+
 	n = 0;
 	j = 1;
 	if (close(STDIN_FILENO) < 0)
@@ -32,24 +33,34 @@ int	builtin_echo(t_child *child)
 		return (1);
 	while (child->cmd[j] && ft_strncmp(child->cmd[j], "-n", 3) == 0)
 	{
-		n = i;
+		n = 1;
 		j++;
 	}
-	while (child->cmd[j])
-	{
-		i = 0;
-		while(child->cmd[j][i])
-		{
-			printf("%c", child->cmd[j][i]);
-			i++;
-		}
-		if (child->cmd[j + 1])
-			printf(" ");
-		j++;
-	}
+	builtin_echo_print_words(&child->cmd[j]);
 	if (n == 0)
 		printf("\n");
 	if (close(STDOUT_FILENO) < 0)
 		return (1);
+	return (0);
+}
+
+static int	builtin_echo_print_words(char **text)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	while (text[j])
+	{
+		i = 0;
+		while (text[j][i])
+		{
+			printf("%c", text[j][i]);
+			i++;
+		}
+		if (text[j + 1])
+			printf(" ");
+		j++;
+	}
 	return (0);
 }
