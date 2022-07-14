@@ -17,7 +17,5 @@ unset non existing env var
 OLDPWD should have the old value of pwd, not the name of the old working directory
 commands stored in enviroment variables do not work
 
-	\ signal does nothing
 	ctrl c in the here doc
 	export lists env var in alphabetical order
-	multiple nested minishells bug

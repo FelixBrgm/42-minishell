@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   children_exec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:26:52 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/14 14:23:35 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/14 19:35:49 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ void	children_exec(t_global *global)
 		}
 		tmp = tmp->next;
 	}
+	signal(SIGINT, SIG_IGN);
 	while (wait(&exit_code) != -1 || errno != ECHILD)
         continue ;
 }
