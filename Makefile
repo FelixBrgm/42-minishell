@@ -3,6 +3,7 @@ NAME = minishell
 CC = cc
 RM = rm -rf
 # CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -iquote /Users/$(USER)/goinfre/.brew/opt/readline/include/readline/
 
 
 SRC := src/

@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:15:45 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/12 21:29:04 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/13 17:00:13 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <limits.h>
 # include <signal.h>
 # include <termios.h>
-# include "readline/history.h"
-# include "readline/readline.h"
+# include "readline.h"
+# include "history.h"
 # include <sys/errno.h>
 
 // typedef struct s_child
@@ -109,5 +109,7 @@ void	children_exec(t_global *global);
 void	global_free(t_global *global);
 // Built In
 int	builtin_exec(t_child *child, char **env);
+
+void	handle_child_sig(int sig);
 
 #endif
