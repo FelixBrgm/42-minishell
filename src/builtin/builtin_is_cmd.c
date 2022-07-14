@@ -6,15 +6,22 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 16:34:01 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/14 14:58:57 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/15 00:05:27 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
+/**
+ * @brief Checks if the cmd is a builtin cmd
+ * 
+ * @param cmd 
+ * @param env 
+ * @return int 
+ */
 int	builtin_is_cmd(char **cmd, char **env)
 {
-	if (!cmd)
+	if (!cmd || !env)
 		return (0);
 	if (ft_strncmp(cmd[0], "echo", ft_strlen("echo") + 1) == 0)
 		return (1);

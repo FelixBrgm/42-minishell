@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 13:57:45 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/14 14:57:56 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/15 00:06:32 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ int	builtin_env(char **env, t_child *child)
 	i = 0;
 	if (close(STDIN_FILENO) < 0)
 		return (1);
-	if (!env)
-		return (1);
-	if (!child->cmd)
+	if (!env || !child->cmd)
 		return (1);
 	if (child->cmd[1])
 		return (1);

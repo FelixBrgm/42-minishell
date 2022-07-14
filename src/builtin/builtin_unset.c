@@ -6,12 +6,11 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 19:20:53 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/14 14:45:07 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/15 00:05:10 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
-
 
 /**
  * @brief Unset a env variable
@@ -28,7 +27,7 @@ int	builtin_unset(t_child *child, char **env)
 
 	if (close(STDIN_FILENO) < 0 && close(STDOUT_FILENO) < 0)
 		return (1);
-	if (!child->cmd)
+	if (!env || !child || !child->cmd)
 		return (1);
 	c = 1;
 	while (child->cmd[c])
@@ -38,7 +37,7 @@ int	builtin_unset(t_child *child, char **env)
 		if (!temp)
 			break ;
 		free(*temp);
-		while(temp[i])
+		while (temp[i])
 		{
 			temp[i -1] = temp[i];
 			i++;

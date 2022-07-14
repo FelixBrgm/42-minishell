@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 19:20:53 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/13 12:39:23 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/14 23:47:15 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-int is_only_digits(char *str);
+int	is_only_digits(char *str);
 int	setup_pipes_exit(t_child *child);
 
 /**
@@ -49,7 +49,7 @@ int	builtin_exit(t_child *child)
 	return (1);
 }
 
-int is_only_digits(char *str)
+int	is_only_digits(char *str)
 {
 	int	i;
 

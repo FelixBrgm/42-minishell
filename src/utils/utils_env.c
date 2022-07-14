@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 11:31:21 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/11 17:45:14 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/15 00:03:55 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	print_split(char **str);
 
 /**
- * @brief Gets current location of the searched name
+ * @brief Gets current location of the searched name | NOT ALLOCATED
  * 
  * @param env 
  * @param name 
  * @return char** 
  */
-char **env_get(char **env, char *name)
+char	**env_get(char **env, char *name)
 {
 	int	i;
 
@@ -32,16 +32,17 @@ char **env_get(char **env, char *name)
 	i = 0;
 	while (env[i])
 	{
-		if (ft_strncmp(env[i], name, ft_strlen(name)) == 0 
-			&& (env[i][ft_strlen(name)] == '=' || env[i][ft_strlen(name)] == '\0'))
-				return (&env[i]);
+		if (ft_strncmp(env[i], name, ft_strlen(name)) == 0
+			&& (env[i][ft_strlen(name)] == '='
+			|| env[i][ft_strlen(name)] == '\0'))
+			return (&env[i]);
 		i++;
 	}
 	return (NULL);
 }
 
 /**
- * @brief Updates environment variable or creates new one if not found
+ * @brief Updates environment variable or creates new one if not found | NOT ALLOCATED
  * 
  * @param env 
  * @param name 
@@ -53,7 +54,7 @@ char **env_update(char **env, char *name, char *value, int equal_sign)
 	char **temp;
 	char	*combined;
 
-	if (!name || !value)
+	if (!env || !name || !value)
 		return (NULL);
 	temp = NULL;
 	temp = env_get(env, name);

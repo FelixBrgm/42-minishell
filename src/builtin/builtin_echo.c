@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 17:08:56 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/13 15:23:59 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/15 00:06:42 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	builtin_echo(t_child *child)
 	j = 1;
 	if (close(STDIN_FILENO) < 0)
 		return (1);
-	if (!child->cmd)
+	if (!child || !child->cmd)
 		return (1);
 	while (child->cmd[j] && ft_strncmp(child->cmd[j], "-n", 3) == 0)
 	{

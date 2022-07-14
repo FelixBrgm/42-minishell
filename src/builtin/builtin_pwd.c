@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:31:24 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/13 12:32:48 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/15 00:00:46 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * 
  * @return int 
  */
-int	builtin_pwd(t_child *child)
+int	builtin_pwd(void)
 {
 	char	res[PATH_MAX];
 

@@ -19,3 +19,12 @@ commands stored in enviroment variables do not work
 
 	ctrl c in the here doc
 	export lists env var in alphabetical order
+
+
+
+POINTERS 
+	set to NULL
+	if allocated freed or in the description 
+	if allocated protected
+INPUT
+	if (!env)
