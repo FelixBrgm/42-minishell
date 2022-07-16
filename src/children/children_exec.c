@@ -6,20 +6,20 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:26:52 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/15 01:06:17 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/16 10:22:52 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "children.h"
 
-int		open_tmp_read(void);
+int	open_tmp_read(void);
+int	perror_int(char *str);
+int	exec_child_single_builtin(t_global *global, t_child *child);
 
 void	children_exec(t_global *global)
 {
 	int		fd_current[2];
 	int		fd_temp[2];
-	int		infd_tmp;
-	int		outfd_tmp;
 	t_child	*tmp;
 
 	fd_current[0] = -1;
@@ -32,48 +32,7 @@ void	children_exec(t_global *global)
 		else if (cmd_count(global) <= 1)
 		{
 			if (builtin_is_cmd(tmp->cmd, global->env))
-			{
-				infd_tmp = dup(STDIN_FILENO);
-				outfd_tmp = dup(STDOUT_FILENO);
-				if (tmp->fd_in != -1 && dup2_close(tmp->fd_in, STDIN_FILENO))
-				{
-					perror("Error fd_in");
-					break ;
-				}
-				if (tmp->fd_out != -1 && dup2_close(tmp->fd_out, STDOUT_FILENO))
-				{
-					perror("Error fd_out");
-					break ;
-				}
-				if (tmp->file_in && child_exec_set_file_in_fd(tmp->file_in))
-				{
-					perror("Error file_in");
-					break ;
-				}
-				if (tmp->prev && tmp->prev->limiter.lim != NULL
-					&& tmp->limiter.lim == NULL
-					&& dup2_close(open_tmp_read(), STDIN_FILENO))
-				{
-					perror("Error here_doc");
-					break ;
-				}
-				if (tmp->file_out_trunc
-					&& child_exec_set_file_out_trunc_fd(tmp->file_out_trunc))
-				{
-					perror("Error file_out_trunc");
-					break ;
-				}
-				if (tmp->file_out_app
-					&& child_exec_set_file_out_app_fd(tmp->file_out_app))
-				{
-					perror("Error file_out_app");
-					break ;
-				}
-				dup2(infd_tmp, STDIN_FILENO);
-				builtin_exec(tmp, global->env);
-				dup2_close(infd_tmp, STDIN_FILENO);
-				dup2_close(outfd_tmp, STDOUT_FILENO);
-			}
+				exec_child_single_builtin(global, tmp);
 			else
 			{
 				setup_pipes_last(fd_current[0], tmp);
@@ -108,4 +67,40 @@ void	children_exec(t_global *global)
 	signal(SIGINT, SIG_IGN);
 	while (wait(&exit_code) != -1 || errno != ECHILD)
 		continue ;
+}
+
+int	exec_child_single_builtin(t_global *global, t_child *child)
+{
+	int		infd_tmp;
+	int		outfd_tmp;
+
+	infd_tmp = dup(STDIN_FILENO);
+	outfd_tmp = dup(STDOUT_FILENO);
+	if (child->fd_in != -1 && dup2_close(child->fd_in, STDIN_FILENO))
+		return (perror_int("Error fd_in"));
+	if (child->fd_out != -1 && dup2_close(child->fd_out, STDOUT_FILENO))
+		return (perror_int("Error fd_out"));
+	if (child->file_in && child_exec_set_file_in_fd(child->file_in))
+		return (perror_int("Error file_in"));
+	if (child->prev && child->prev->limiter.lim != NULL
+		&& child->limiter.lim == NULL
+		&& dup2_close(open_tmp_read(), STDIN_FILENO))
+		return (perror_int("Error here_doc"));
+	if (child->file_out_trunc
+		&& child_exec_set_file_out_trunc_fd(child->file_out_trunc))
+		return (perror_int("Error file_out_trunc"));
+	if (child->file_out_app && child_exec_ofd(child->file_out_app))
+		return (perror_int("Error file_out_app"));
+	dup2(infd_tmp, STDIN_FILENO);
+	builtin_exec(child, global->env);
+	dup2_close(infd_tmp, STDIN_FILENO);
+	dup2_close(outfd_tmp, STDOUT_FILENO);
+	return (0);
+}
+
+int	perror_int(char *str)
+{
+	if (str)
+		perror(str);
+	return (1);
 }

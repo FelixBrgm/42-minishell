@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 00:36:24 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/15 00:38:33 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/16 10:10:25 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	child_exec_set_file_out_trunc_fd(char *file)
 	return (0);
 }
 
-int	child_exec_set_file_out_app_fd(char *file)
+// child_exec_set_file_out_app_fd
+int	child_exec_ofd(char *file)
 {
 	int	fd;
 

@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 15:34:17 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/15 00:43:55 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/16 10:15:26 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	child_exec_error_handling(t_child *child)
 		&& child_exec_set_file_out_trunc_fd(child->file_out_trunc))
 		perror_exit("Error file_out_trunc after fork");
 	if (child->file_out_app
-		&& child_exec_set_file_out_app_fd(child->file_out_app))
+		&& child_exec_ofd(child->file_out_app))
 		perror_exit("Error file_out_app");
 }
 

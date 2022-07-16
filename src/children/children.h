@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:25:31 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/15 01:01:35 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/16 10:10:49 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*get_cmd(char *str);
 // Child_exec_utils
 int		child_exec_set_file_in_fd(char *file);
 int		child_exec_set_file_out_trunc_fd(char *file);
-int		child_exec_set_file_out_app_fd(char *file);
+int		child_exec_ofd(char *file);
 int		dup2_close(int fd, int fd2);
 void	perror_exit(char *str);
 
