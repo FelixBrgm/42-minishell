@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   set_vars.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 15:38:49 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/10 11:28:59 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/16 22:14:25 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "input.h"
-void	print_split(char **str);
 
 char	*get_var_name(char *str)
 {
@@ -34,44 +33,47 @@ char	*get_var_name(char *str)
 	return (var_name);
 }
 
+void	len_helper(char *str, int *i, int *size, char **env)
+{
+	int		squote;
+	int		dquote;
+	char	*var_name;
+
+	squote = 0;
+	dquote = 0;
+	var_name = NULL;
+	if (str[*i] == '\"' && ft_strchr(&str[(*i) + 1], '\"') != 0 && squote == 0)
+		dquote = 1;
+	if (str[*i] == '\'' && ft_strchr(&str[(*i) + 1], '\'') != 0 && dquote == 0)
+		squote = 1;
+	if (str[*i] == '$' && squote == 0)
+	{
+		var_name = get_var_name(&(str[(*i) + 1]));
+		*size += ft_strlen(env_get_value(env, var_name));
+		*i += ft_strlen(var_name);
+		free(var_name);
+	}
+	else
+		(*size)++;
+	(*i)++;
+	if (str[*i] == '\'' && squote == 1)
+		squote = 0;
+	if (str[*i] == '\"' && dquote == 1)
+		dquote = 0;
+}
+
 int	get_expanded_len(char *str, char **env)
 {
 	int		size;
 	int		i;
-	char	*var_name;
-	int		squote;
-	int		dquote;
 
 	i = 0;
 	size = 0;
-	squote = 0;
-	dquote = 0;
-	var_name = NULL;
 	while (str != NULL && str[i] != '\0')
-	{
-		if (str[i] == '\"' && ft_strchr(&str[i + 1], '\"') != 0 && squote == 0)
-			dquote = 1;
-		if (str[i] == '\'' && ft_strchr(&str[i + 1], '\'') != 0 && dquote == 0)
-			squote = 1;
-		if (str[i] == '$' && squote == 0)
-		{
-			var_name = get_var_name(&(str[i + 1]));
-			size += ft_strlen(env_get_value(env, var_name));
-			i += ft_strlen(var_name);
-			free(var_name);
-		}
-		else
-			size++;
-		i++;
-		if (str[i] == '\'' && squote == 1)
-			squote = 0;
-		if (str[i] == '\"' && dquote == 1)
-			dquote = 0;
-	}
+		len_helper(str, &i, &size, env);
 	return (size);
 }
 
-//to trash, the get_expanded_len should work test that !!!
 char	*set_vars(char *str, char **env)
 {
 	char	*ret_str;

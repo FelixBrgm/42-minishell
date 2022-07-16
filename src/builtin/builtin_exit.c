@@ -6,14 +6,15 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 19:20:53 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/14 23:47:15 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/16 20:35:03 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-int	is_only_digits(char *str);
-int	setup_pipes_exit(t_child *child);
+int		is_only_digits(char *str);
+int		setup_pipes_exit(t_child *child);
+void	helper(t_global *global, t_child *child);
 
 /**
  * @brief Cd's into the given directory
@@ -21,7 +22,7 @@ int	setup_pipes_exit(t_child *child);
  * @param cmd as { "cd", "DIR" }
  * @return int 
  */
-int	builtin_exit(t_child *child)
+int	builtin_exit(t_child *child, t_global *global)
 {
 	close(STDIN_FILENO);
 	if (!child->cmd)
@@ -29,24 +30,29 @@ int	builtin_exit(t_child *child)
 	if (!child->cmd[1])
 	{
 		printf("exit\n");
+		global_free(global);
 		close(STDOUT_FILENO);
-		exit(exit_code % 256);
+		exit(g_exit_code % 256);
 	}
 	else if (ft_2ptrlen((void **)child->cmd) == 2)
-	{
-		printf("exit\n");
-		if (is_only_digits(child->cmd[1]))
-		{
-			printf("bash: exit: a: numeric argument required\n");
-			exit(255);
-		}
-		close(STDOUT_FILENO);
-		exit((unsigned int)ft_atoi(child->cmd[1]) % 256);
-	}
+		helper(global, child);
 	else
 		printf("exit\nexit: too many arguments\n");
 	close(STDOUT_FILENO);
 	return (1);
+}
+
+void	helper(t_global *global, t_child *child)
+{
+	printf("exit\n");
+	if (is_only_digits(child->cmd[1]))
+	{
+		printf("bash: exit: a: numeric argument required\n");
+		exit(255);
+	}
+	close(STDOUT_FILENO);
+	global_free(global);
+	exit((unsigned int)ft_atoi(child->cmd[1]) % 256);
 }
 
 int	is_only_digits(char *str)

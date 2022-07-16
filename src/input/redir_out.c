@@ -3,40 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   redir_out.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 19:18:31 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/08 20:50:25 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/16 20:29:29 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "input.h"
-
-// int	is_redir_out(char *str)
-// {
-// 	int	i;
-// 	int	j;
-// 	char	**tmp;
-
-// 	tmp = split_mod(str, ' ');
-// 	j = split_len(tmp) - 1;
-// 	while (j >= 0)
-// 	{
-// 		i = 0;
-// 		while (tmp[j][i] != '\0')
-// 		{
-// 			if (ft_strlen(tmp[j]) == 1 && tmp[j][i] == '>')
-// 			{
-// 				free_split(tmp);
-// 				return (j);
-// 			}
-// 			i++;
-// 		}
-// 		j--;
-// 	}
-// 	free_split(tmp);
-// 	return (-1);
-// }
 
 int	is_redir_out(char *str)
 {
@@ -65,7 +39,7 @@ char	*rem_redir_out(char *str)
 			i++;
 		i++;
 	}
-	free_split(tmp);
+	ft_free_split(tmp);
 	if (str != NULL)
 		free(str);
 	return (ret);

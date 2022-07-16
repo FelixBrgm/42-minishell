@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 11:31:21 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/15 00:03:55 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/16 20:35:03 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ char	**env_get(char **env, char *name)
 char **env_update(char **env, char *name, char *value, int equal_sign)
 {
 	char **temp;
-	char	*combined;
 
 	if (!env || !name || !value)
 		return (NULL);
@@ -94,9 +93,9 @@ char *env_get_value(char **env, char *name)
 	int		i;
 	
 	// if (name && ft_strncmp(name, "?", 1) == 0)
-	// 	return (ft_strjoin_free(ft_itoa(exit_code), &name[1]));
+	// 	return (ft_strjoin_free(ft_itoa(g_exit_code), &name[1]));
 	if (name && ft_strncmp(name, "?", 1) == 0)
-		return (ft_itoa(WEXITSTATUS(exit_code)));
+		return (ft_itoa(WEXITSTATUS(g_exit_code)));
 	temp = NULL;
 	temp = env_get(env, name);
 	if (!temp)

@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 15:34:17 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/16 10:15:26 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/16 20:36:37 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int		child_need_fork(char **cmd);
 int		open_tmp_read(void);
-void	child_exec_builtin(char **env, t_child *child);
+void	child_exec_builtin(t_global *global, t_child *child);
 void	child_exec_error_handling(t_child *child);
 
-int	child_exec(t_child *child, char **env, int free_pipe, int *this_pid)
+int	child_exec(t_child *child, t_global *global, int free_pipe)
 {
 	int		pid;
 	char	*path;
@@ -25,22 +25,21 @@ int	child_exec(t_child *child, char **env, int free_pipe, int *this_pid)
 	pid = 0;
 	pid = fork();
 	if (pid != 0)
-		return (pid);
+		return (0);
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
-	*this_pid = pid;
 	if (free_pipe != -1)
 		close(free_pipe);
 	child_exec_error_handling(child);
-	if (builtin_is_cmd(child->cmd, env))
-		child_exec_builtin(env, child);
+	if (builtin_is_cmd(child->cmd, global->env))
+		child_exec_builtin(global, child);
 	else
 	{
 		if (child->cmd)
-			path = child_where(child->cmd[0], env);
+			path = child_where(child->cmd[0], global->env);
 		else
 			path = NULL;
-		execve(path, child->cmd, env);
+		execve(path, child->cmd, global->env);
 	}
 	perror_exit("Error execve");
 	return (0);
@@ -92,11 +91,11 @@ int	open_tmp_read(void)
 	return (fd);
 }
 
-void	child_exec_builtin(char **env, t_child *child)
+void	child_exec_builtin(t_global *global, t_child *child)
 {
-	if (!env || !child)
+	if (!global->env || !child)
 		exit(1);
-	if (builtin_exec(child, env))
+	if (builtin_exec(child, global))
 	{
 		printf("Error builtin_exec\n");
 		exit(1);

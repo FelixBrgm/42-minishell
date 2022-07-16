@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_expand_rem_redir.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:37:16 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/09 14:13:26 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/16 20:28:36 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	**input_expand(char **input, char **env)
 
 	i = 0;
 	if (input == NULL)
-		return NULL;
+		return (NULL);
 	tmp = malloc((split_len(input) + 1) * sizeof(char *));
 	while (input[i] != NULL)
 	{
@@ -27,7 +27,7 @@ char	**input_expand(char **input, char **env)
 		i++;
 	}
 	tmp[i] = NULL;
-	free_split(input);
+	ft_free_split(input);
 	return (tmp);
 }
 
@@ -38,7 +38,7 @@ char	**input_clear_redirs(char **input)
 
 	i = 0;
 	if (input == NULL)
-		return NULL;
+		return (NULL);
 	tmp = malloc((split_len(input) + 1) * sizeof(char *));
 	while (input[i] != NULL)
 	{

@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 11:44:43 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/15 00:51:57 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/16 19:36:11 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ char	*child_where( char *cmd, char **env)
 {
 	int		i;
 	char	**paths;
-	char	*res;
 	char	*temp;
 
 	paths = where_get_paths(env);
