@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:14:50 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/14 19:35:49 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/15 17:57:34 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	setup_termios_new(t_global *global)
 	term = global->old_termios;
 	// term.c_cc[VEOF] = 3;
 	// term.c_cc[VINTR] = 4;
-	term.c_lflag = ECHO | ISIG;
+	term.c_lflag &= ~ECHOCTL;
 	tcsetattr(0, TCSANOW, &term);
 }
 
