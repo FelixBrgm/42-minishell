@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:25:31 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/16 10:10:49 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/16 20:37:03 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@
 # include "../../minishell.h"
 # include "../builtin/builtin.h"
 
-int		child_exec(t_child *child, char **env, int free_pipe, int *this_pid);
+int		child_exec(t_child *child, t_global *global, int free_pipe);
 int		limiter_exec(t_child *child, char **env);
-void	children_free(t_global *global);
 char	*child_where( char *cmd, char **env);
 char	**get_paths(char **env);
 char	*get_cmd(char *str);

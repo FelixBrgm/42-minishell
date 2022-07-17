@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_mod.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 17:38:23 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/07 18:38:03 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/16 19:35:55 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int	get_len(char *str, char c)
 char	*copy_word(char *str, char c)
 {
 	int		i;
-	int		j;
 	char	*ret_str;
 	int		size;
 

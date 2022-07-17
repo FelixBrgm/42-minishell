@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_dllist.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 13:08:21 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/12 21:39:06 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/16 21:57:55 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ t_child	*dlistlast(t_child *lst)
 	return (lst);
 }
 
-//f_in = file_in | f_out_t = file_out_trunc | f_out_a = file_out_app | lim = limiter.lim | expand = limiter.expand
-t_child	*dlistnew(char *f_in, char *f_out_t, char *f_out_a, char *lim, int expand)
+//f_in = file_in | f_out_t = file_out_trunc | f_out_a = file_out_app
+t_child	*dlistnew(char *f_in, char *f_out_t, char *f_out_a, t_limiter limiter)
 {
 	t_child	*node;
 
@@ -101,8 +101,8 @@ t_child	*dlistnew(char *f_in, char *f_out_t, char *f_out_a, char *lim, int expan
 	node->file_in = f_in;
 	node->file_out_trunc = f_out_t;
 	node->file_out_app = f_out_a;
-	node->limiter.lim = lim;
-	node->limiter.expand = expand;
+	node->limiter.lim = limiter.lim;
+	node->limiter.expand = limiter.expand;
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);

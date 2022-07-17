@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_rem_quotes.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:33:05 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/08 21:02:33 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/16 20:56:32 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,27 @@ char	*remove_first_character(char *str)
 	return (str);
 }
 
+void	first_quote(int *i, char *str, int *status)
+{
+	if (str[(*i)] == '\"')
+	{
+		*status = 1;
+		remove_first_character(&str[(*i)]);
+	}
+	else if (str[(*i)] == '\'')
+	{
+		*status = 2;
+		remove_first_character(&str[(*i)]);
+	}
+	else
+		(*i)++;
+}
+
 char	*rem_quotes(char *str)
 {
-	int	status; // 0 Nothing encountered | 1 "" | 2 ''
-	int 	i;
-	char *res;
-	
+	int		status;
+	int		i;
+
 	i = 0;
 	status = 0;
 	if (!str)
@@ -41,35 +56,21 @@ char	*rem_quotes(char *str)
 	while (str[i])
 	{
 		if (status == 0)
-		{
-			if (str[i] == '\"')
-			{
-				status = 1;
-				remove_first_character(&str[i]);
-			}
-			else if (str[i] == '\'')
-			{
-				status = 2;
-				remove_first_character(&str[i]);
-			}
-			else 
-				i++;
-		}
+			first_quote(&i, str, &status);
 		else if (status == 1 && str[i] == '\"')
 		{
 			status = 0;
-				remove_first_character(&str[i]);
+			remove_first_character(&str[i]);
 		}
 		else if (status == 2 && str[i] == '\'')
 		{
 			status = 0;
-				remove_first_character(&str[i]);
+			remove_first_character(&str[i]);
 		}
 		else
 			i++;
 	}
-	res = ft_strdup(str);
-	return (res);
+	return (ft_strdup(str));
 }
 
 char	**input_rem_quotes(char **input)
@@ -79,7 +80,7 @@ char	**input_rem_quotes(char **input)
 
 	i = 0;
 	if (input == NULL)
-		return NULL;
+		return (NULL);
 	tmp = malloc((split_len(input) + 1) * sizeof(char *));
 	while (input[i] != NULL)
 	{
@@ -87,7 +88,6 @@ char	**input_rem_quotes(char **input)
 		i++;
 	}
 	tmp[i] = NULL;
-	free_split(input);
-	return(tmp);
+	ft_free_split(input);
+	return (tmp);
 }
-//echo < 1 >>outfile_app1 >>otufile_app_2 < infile_2 <<here_doc1 <infile3 >otufile1_trunc

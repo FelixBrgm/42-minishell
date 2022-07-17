@@ -6,14 +6,14 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:14:50 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/15 17:57:34 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/17 13:40:46 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "src/builtin/builtin.h"
 
-int	exit_code = 0;
+int	g_exit_code = 0;
 
 void	setup_termios_new(t_global *global)
 {
@@ -48,34 +48,28 @@ int	main(int argc, char **argv, char **env)
 	t_global	global;
 	struct sigaction	sa;
 
+	if (!argv || argc != 1)
+		return (1);
 	setup_termios_new(&global);
 	sa.sa_handler = &handle_sigint;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = SA_RESTART;
 	sigaction(SIGINT, &sa, NULL);
-	// signal(SIGQUIT, SIG_IGN);
-	// signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 	set_to_default(&global, env);
 	while (1)
 	{
 		if (input_read(&global) == 0)
 		{
-			// tcsetattr(0, TCSANOW, &global.old_termios);
-			// sa.sa_handler = NULL;
-			// sigaction(SIGINT, &sa, NULL);
 			open_files(global.app_file_list_head, global.trunc_file_list_head);
-			// signal(SIGINT, SIG_IGN);
 			children_exec(&global);
+			children_free(global.children_head);
 			sigaction(SIGINT, &sa, NULL);
+			free(global.input);
 		}
 	}
-	// set_to_default(global);
-	// while (1)
-	// {
-	// 	input_read(global);
-	// 	child_exec(global);
-	// 	children_free(global);
-	// }
+	global_free(&global);
+
+	printf("HELLO\n");
 	return (0);
 }

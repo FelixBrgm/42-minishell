@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:15:45 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/14 17:36:50 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/16 20:35:03 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,7 @@
 # include "history.h"
 # include <sys/errno.h>
 
-// typedef struct s_child
-// {
-// 	char	**cmd;
-// 	char	**shell;
-// 	int		fd_in;
-// 	int		fd_out;
-// 	char	*file_in;
-// 	char	*file_out_trunc;
-// 	char	*file_out_app;
-// 	char	*limiter;
-// }				t_child;
-
-extern int exit_code;
+extern int	g_exit_code;
 
 typedef struct s_limiter
 {
@@ -52,7 +40,6 @@ typedef struct s_file_node
 {
 	char				*path;
 	struct s_file_node	*next;
-	
 }				t_file_node;
 
 typedef struct s_child
@@ -69,28 +56,12 @@ typedef struct s_child
 	
 }				t_child;
 
-// typedef struct s_global
-// {
-// 	// CONFIG
-// 	char			*promt;
-// 	int				interactive_mode;
-// 	int				ex_status;
-// 	char			**env;
-// 	struct termios	old_termios;
-// 	//Runtime
-// 	char			*input;
-// 	t_child			**children;
-// }				t_global;
-
 typedef struct s_global
 {
-	// CONFIG
-	char			*promt;
 	int				interactive_mode;
 	int				ex_status;
 	char			**env;
 	struct termios	old_termios;
-	//Runtime
 	char			*input;
 	t_child			*children_head;
 	t_file_node		*trunc_file_list_head;
@@ -106,9 +77,8 @@ int		open_files(t_file_node *app_files, t_file_node *trunc_files);
 
 void	children_exec(t_global *global);
 
-void	global_free(t_global *global);
 // Built In
-int	builtin_exec(t_child *child, char **env);
+int		builtin_exec(t_child *child, t_global *global);
 
 void	handle_child_sig(int sig);
 
