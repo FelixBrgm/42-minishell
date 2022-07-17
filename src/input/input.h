@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:23:08 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/16 19:49:55 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/17 16:59:20 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,18 @@
 # include "../../minishell.h"
 # include "../utils/utils.h"
 
+typedef struct s_set_vars
+{
+	char	*ret_str;
+	int		i;
+	int		j;
+	char	*value;
+	char	*var_name;
+	int		quotes;
+}				t_set_vars;
+
 int		input_parse(t_global *global);
-char	**split_mod(char *str, char c);
 char	*rem_redirs(char *old_input);
-void	set_null_children(t_global *global, int count);
 
 //input_add_spaces
 int		is_valid_redir(char *str, int i);
@@ -27,8 +35,6 @@ int		len_with_spaces(char *str);
 char	*add_spaces(char *str);
 
 //dredir_in
-// char	*get_dredir(char *str);
-// char	**sep_dredir_in(int count, char **old_input);
 char	*rem_dredir_in(char *str);
 int		is_dredir_in_split(char **str);
 int		is_dredir_in(char *str);
@@ -54,7 +60,6 @@ int		get_expanded_len(char *str, char **env);
 char	*get_var_name(char *str);
 
 //utils
-void	free_split(char **str);
 void	print_split(char **str);
 void	print_children(t_child *list);
 int		split_len(char **str);

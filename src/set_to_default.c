@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_to_default.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:24:47 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/14 14:53:19 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/17 15:19:25 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	set_to_default(t_global	*global, char **env)
 {
 	int	i;
-	
+
 	i = 0;
 	global->env = ft_calloc(1024, sizeof(char *));
 	if (global->env)
@@ -28,6 +28,7 @@ int	set_to_default(t_global	*global, char **env)
 		global->env[i] = ft_strdup(env[i]);
 		i++;
 	}
-	//env_update(global->env, "SHLVL", ft_itoa(ft_atoi(env_get_value(global->env, "SHLVL")) + 1), 1);
 	return (0);
 }
+	// env_update(global->env, "SHLVL",
+	// 	ft_itoa(ft_atoi(env_get_value(global->env, "SHLVL")) + 1), 1);

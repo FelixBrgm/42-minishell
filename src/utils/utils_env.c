@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 11:31:21 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/16 20:35:03 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/17 16:51:15 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-
-void	print_split(char **str);
 
 /**
  * @brief Gets current location of the searched name | NOT ALLOCATED
@@ -42,16 +40,16 @@ char	**env_get(char **env, char *name)
 }
 
 /**
- * @brief Updates environment variable or creates new one if not found | NOT ALLOCATED
- * 
+ * @brief Updates environment variable or creates new one if not found
+ * | NOT ALLOCATED
  * @param env 
  * @param name 
  * @param value 
  * @return char** to current changed variable
  */
-char **env_update(char **env, char *name, char *value, int equal_sign)
+char	**env_update(char **env, char *name, char *value, int equal_sign)
 {
-	char **temp;
+	char	**temp;
 
 	if (!env || !name || !value)
 		return (NULL);
@@ -69,7 +67,7 @@ char **env_update(char **env, char *name, char *value, int equal_sign)
 	else
 	{
 		temp = env_extend(env);
-		if(!temp)
+		if (!temp)
 			return (NULL);
 		if (*value == '\0' && equal_sign == 0)
 			*temp = ft_strdup(name);
@@ -79,19 +77,21 @@ char **env_update(char **env, char *name, char *value, int equal_sign)
 	}
 	return (NULL);
 }
+
 /**
  * @brief Get value of name | NOT ALLOCATED
- * 
+ *
  * @param env 
  * @param name 
- * @return char* NULL if not found || Pointer if name found and after '=' character
+ * @return char* NULL if not found || Pointer
+ * if name found and after '=' character
  */
-char *env_get_value(char **env, char *name)
+char	*env_get_value(char **env, char *name)
 {
 	char	**temp;
 	char	*variable;
 	int		i;
-	
+
 	// if (name && ft_strncmp(name, "?", 1) == 0)
 	// 	return (ft_strjoin_free(ft_itoa(g_exit_code), &name[1]));
 	if (name && ft_strncmp(name, "?", 1) == 0)
@@ -110,18 +110,19 @@ char *env_get_value(char **env, char *name)
 	}
 	return (&variable[i]);
 }
+
 /**
  * @brief Gets the next free space in the env | NOT ALLOCATED
- * 
- * @param env 
- * @return char** 
+ *
+ * @param env
+ * @return char**
  */
-char **env_extend(char **env)
+char	**env_extend(char **env)
 {
 	int	i;
-	
+
 	i = 0;
-	while(env[i] && i < 1023)
+	while (env[i] && i < 1023)
 		i++;
 	if (i >= 1023)
 		return (NULL);

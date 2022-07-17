@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:14:50 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/17 13:40:46 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/17 17:03:02 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,10 @@ int	g_exit_code = 0;
 
 void	setup_termios_new(t_global *global)
 {
-	struct termios term;
+	struct termios	term;
 
 	tcgetattr(0, &global->old_termios);
-	// global->old_termios.c_cc[VEOF] = 4;
-	// global->old_termios.c_cc[VINTR] = 3;
 	term = global->old_termios;
-	// term.c_cc[VEOF] = 3;
-	// term.c_cc[VINTR] = 4;
 	term.c_lflag &= ~ECHOCTL;
 	tcsetattr(0, TCSANOW, &term);
 }
@@ -34,18 +30,16 @@ void	handle_sigint(int sig)
 	if (sig == SIGINT)
 	{
 		printf("\n");
-		// write(1, "\n", 1);
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
 		return ;
 	}
-
 }
 
 int	main(int argc, char **argv, char **env)
 {
-	t_global	global;
+	t_global			global;
 	struct sigaction	sa;
 
 	if (!argv || argc != 1)
@@ -69,7 +63,5 @@ int	main(int argc, char **argv, char **env)
 		}
 	}
 	global_free(&global);
-
-	printf("HELLO\n");
 	return (0);
 }

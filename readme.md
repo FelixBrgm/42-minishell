@@ -28,3 +28,6 @@ POINTERS
 	if allocated protected
 INPUT
 	if (!env)
+
+//17.07.2022
+free file lists on each iteration

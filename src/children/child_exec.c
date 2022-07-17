@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 15:34:17 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/16 20:36:37 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/17 17:26:14 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	child_exec(t_child *child, t_global *global, int free_pipe)
 			path = NULL;
 		execve(path, child->cmd, global->env);
 	}
-	perror_exit("Error execve");
+	perror_exit(ft_strjoin("Error execve: ", child->cmd[0]));
 	return (0);
 }
 

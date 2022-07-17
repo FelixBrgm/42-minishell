@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:15:45 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/16 20:35:03 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/17 13:45:50 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-
 
 # include "libs/libs.h"
 # include <stdio.h>
@@ -53,7 +52,7 @@ typedef struct s_child
 	t_limiter		limiter;
 	struct s_child	*next;
 	struct s_child	*prev;
-	
+
 }				t_child;
 
 typedef struct s_global
@@ -68,7 +67,7 @@ typedef struct s_global
 	t_file_node		*app_file_list_head;
 	int				this_pid;
 }				t_global;
- 
+
 int		set_to_default(t_global	*global, char **env);
 
 int		input_read(t_global *global);

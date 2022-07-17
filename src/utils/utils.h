@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 11:33:35 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/16 20:26:28 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/17 17:05:18 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,14 @@ int			is_valid_redir(char *str, int i);
 int			set_redirs_out(char **tmp, t_global *glob);
 int			set_dredir_in(char	**tmp, t_global *global);
 int			set_redir_in(char **tmp, t_global *global);
+
+//split_mod / utils_split_mod
+char		**split_mod(char *str, char c);
+int			get_len_until_char(char *str, char c, char char_og);
+int			get_len(char *str, char c);
+int			word_count(char *str, char c);
+char		*skip_char(char *str, char c);
+char		*copy_word(char *str, char c);
+char		*skip_word(char *str, char c);
 
 #endif
