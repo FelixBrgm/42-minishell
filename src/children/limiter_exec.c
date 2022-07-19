@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   limiter_exec.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 15:36:11 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/16 19:43:12 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/19 15:28:54 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	limiter_exec(t_child *child, char **env)
 	int		fd;
 
 	read_line = readline("here_doc> ");
+	res = NULL;
 	while (read_line && ft_strncmp(read_line, child->limiter.lim,
 			ft_strlen(child->limiter.lim) + 1) != 0)
 	{

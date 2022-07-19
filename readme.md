@@ -35,3 +35,13 @@ free file lists on each iteration - should be fixed now
 //18.07.2022
 ft_free_split segfaults - should be fixed
 fix add_spaces - should be fizef
+
+//19.07.2022
+segfault on <out <<END
+exiting on ulimit 4
+change X_OK to F_OK
+change printf to ft_printf in echo
+check multiple pipes
+trunc tabs and new lines
+exit with args segfault
+echo '$='
