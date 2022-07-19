@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 17:08:56 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/15 00:06:42 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/19 14:50:51 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	builtin_echo_print_words(char **text)
 		i = 0;
 		while (text[j][i])
 		{
-			printf("%c", text[j][i]);
+			ft_printf("%c", text[j][i]);
 			i++;
 		}
 		if (text[j + 1])

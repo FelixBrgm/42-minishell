@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_read.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:22:56 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/18 16:31:34 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/19 15:43:46 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,22 @@
 //(line 19) check if just a new line
 int	input_read(t_global *global)
 {
-	global->input = readline("minishell-6.9 ");
+	if (isatty(0))
+		global->input = readline("minishell-6.9 ");
+	else
+	{
+		global->input = get_next_line(0);
+		if (global->input && global->input[ft_strlen(global->input) - 1] == '\n')
+			global->input[ft_strlen(global->input) - 1] = '\0';
+	}
 	if (ft_strlen(global->input) > 0)
 		add_history(global->input);
 	else
 	{
 		if (global->input == NULL)
 		{
-			printf("exit\n");
+			if (isatty(0))
+				printf("exit\n");
 			exit(0);
 		}
 		return (1);

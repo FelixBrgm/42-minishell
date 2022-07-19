@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 19:20:53 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/16 20:35:03 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/19 15:18:44 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ void	helper(t_global *global, t_child *child)
 		exit(255);
 	}
 	close(STDOUT_FILENO);
+	int i = ft_atoi(child->cmd[1]);
 	global_free(global);
-	exit((unsigned int)ft_atoi(child->cmd[1]) % 256);
+	exit(i);
 }
 
 int	is_only_digits(char *str)
