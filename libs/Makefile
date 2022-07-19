@@ -1,4 +1,5 @@
 AR := ar rcs
+CFLAGS = -Wall -Wextra -Werror 
 
 NAME = libs.a
 

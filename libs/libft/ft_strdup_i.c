@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 10:36:29 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/06 15:27:48 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:41:14 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*ft_strdup_i(const char *s1, size_t n)
 {
 	char	*mem;
-	int		i;
+	size_t	i;
 
 	i = 0;
 	mem = ft_calloc(n + 1, sizeof(char));

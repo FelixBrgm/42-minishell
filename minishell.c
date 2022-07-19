@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:14:50 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/18 15:44:09 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:28:58 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ void	handle_sigint(int sig)
 	}
 }
 
+void	free_node_files(t_global *global)
+{
+	file_node_free(global->app_file_list_head);
+	file_node_free(global->trunc_file_list_head);
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	t_global			global;
@@ -58,12 +64,10 @@ int	main(int argc, char **argv, char **env)
 			open_files(global.app_file_list_head, global.trunc_file_list_head);
 			children_exec(&global);
 			sigaction(SIGINT, &sa, NULL);
+			free_node_files(&global);
 			children_free(global.children_head);
-			file_node_free(global.app_file_list_head);
-			file_node_free(global.trunc_file_list_head);
 			free(global.input);
 		}
 	}
-	global_free(&global);
 	return (0);
 }

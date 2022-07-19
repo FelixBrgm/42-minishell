@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:15:12 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/18 16:52:54 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:37:00 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	children_free(t_child *head)
 		free(head->file_out_trunc);
 		free(head->file_out_app);
 		free(head->limiter.lim);
-		// free(head->next);
 		free(head);
 		head = temp;
 	}

@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 19:20:53 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/19 17:54:30 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/19 18:00:39 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	builtin_exit(t_child *child, t_global *global)
 
 void	helper(t_global *global, t_child *child)
 {
+	int	i;
+
 	printf("exit\n");
 	if (is_only_digits(child->cmd[1]))
 	{
@@ -51,7 +53,7 @@ void	helper(t_global *global, t_child *child)
 		exit(255);
 	}
 	close(STDOUT_FILENO);
-	int i = ft_atoi(child->cmd[1]);
+	i = ft_atoi(child->cmd[1]);
 	global_free(global);
 	exit(i);
 }

@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:22:56 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/19 15:43:46 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:36:02 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	input_read(t_global *global)
 	else
 	{
 		global->input = get_next_line(0);
-		if (global->input && global->input[ft_strlen(global->input) - 1] == '\n')
+		if (global->input
+			&& global->input[ft_strlen(global->input) - 1] == '\n')
 			global->input[ft_strlen(global->input) - 1] = '\0';
 	}
 	if (ft_strlen(global->input) > 0)
