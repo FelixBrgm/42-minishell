@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_files.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:41:07 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/16 21:58:03 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:34:10 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,10 @@ int	set_files(char **split_input, t_global *global)
 	int			i;
 	t_limiter	lim;
 
-	i = 0;
-	while (split_input[i] != NULL)
+	i = -1;
+	while (split_input[++i] != NULL)
 	{
+		split_input[i] = rem_nl_tab(split_input[i]);
 		tmp = split_mod(split_input[i], ' ');
 		if (set_dredir_in(tmp, global) == 1)
 		{
@@ -84,7 +85,6 @@ int	set_files(char **split_input, t_global *global)
 			return (1);
 		}
 		ft_free_split(tmp);
-		i++;
 	}
 	return (0);
 }

@@ -1,0 +1,6 @@
+{
+	"files.associations": {
+		"*.xpm": "plaintext",
+		"input.h": "c"
+	}
+}

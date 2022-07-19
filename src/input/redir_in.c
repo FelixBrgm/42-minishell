@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_in.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 19:18:45 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/16 20:29:13 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:32:22 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char	*rem_redir_in(char *str)
 	char	*ret;
 	int		i;
 
+	str = rem_nl_tab(str);
 	tmp = split_mod(str, ' ');
 	i = 0;
 	ret = NULL;

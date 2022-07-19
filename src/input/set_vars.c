@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 15:38:49 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/17 15:18:35 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:51:30 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@ char	*get_var_name(char *str)
 	i = 0;
 	while (str[i] != '\0' && str[i] != '\'' && str[i] != '\"')
 	{
-		if (str[i] == ' ' || str[i] == '|' || str[i] == '<' || str[i] == '>')
+		if (str[i] == ' ' || str[i] == '|' || str[i] == '<'
+			|| str[i] == '>' || str[i] == '\\')
+		{
 			break ;
+		}
 		i++;
 	}
 	var_name = ft_strdup_i(str, i);
@@ -33,45 +36,51 @@ char	*get_var_name(char *str)
 	return (var_name);
 }
 
-void	len_helper(char *str, int *i, int *size, char **env)
+//vars->j = len
+void	len_helper(char *str, t_set_vars *vars, char **env)
 {
-	int		squote;
-	int		dquote;
 	char	*var_name;
 
-	squote = 0;
-	dquote = 0;
 	var_name = NULL;
-	if (str[*i] == '\"' && ft_strchr(&str[(*i) + 1], '\"') != 0 && squote == 0)
-		dquote = 1;
-	if (str[*i] == '\'' && ft_strchr(&str[(*i) + 1], '\'') != 0 && dquote == 0)
-		squote = 1;
-	if (str[*i] == '$' && squote == 0)
+	if (str[vars->i] == '\"' && ft_strchr(&str[vars->i + 1], '\"') != 0
+		&& vars->quotes == 0)
 	{
-		var_name = get_var_name(&(str[(*i) + 1]));
-		*size += ft_strlen(env_get_value(env, var_name));
-		*i += ft_strlen(var_name);
+		vars->quotes = 1;
+	}
+	if (str[vars->i] == '\'' && ft_strchr(&str[vars->i + 1], '\'') != 0
+		&& vars->quotes == 0)
+	{
+		vars->quotes = 2;
+	}
+	if (str[vars->i] == '$' && (vars->quotes == 0 || vars->quotes == 1))
+	{
+		var_name = get_var_name(&(str[(vars->i) + 1]));
+		vars->j += ft_strlen(env_get_value(env, var_name));
+		vars->i += ft_strlen(var_name);
 		free(var_name);
 	}
 	else
-		(*size)++;
-	(*i)++;
-	if (str[*i] == '\'' && squote == 1)
-		squote = 0;
-	if (str[*i] == '\"' && dquote == 1)
-		dquote = 0;
+		vars->j++;
 }
 
+//vars.j is the len
 int	get_expanded_len(char *str, char **env)
 {
-	int		size;
-	int		i;
+	t_set_vars	vars;
 
-	i = 0;
-	size = 0;
-	while (str != NULL && str[i] != '\0')
-		len_helper(str, &i, &size, env);
-	return (size);
+	vars.i = 0;
+	vars.j = 0;
+	vars.quotes = 0;
+	while (str != NULL && str[vars.i] != '\0')
+	{
+		len_helper(str, &vars, env);
+		vars.i++;
+		if (str[vars.i] == '\'' && vars.quotes == 2)
+			vars.quotes = 0;
+		if (str[vars.i] == '\"' && vars.quotes == 1)
+			vars.quotes = 0;
+	}
+	return (vars.j);
 }
 
 void	set_helper(char *str, char **env, t_set_vars *vars)

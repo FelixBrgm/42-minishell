@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:21:55 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/18 18:24:01 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:10:38 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	put_spaces(char *ret_str, char *str, int *i, int *j)
 	}
 	else if (tmp_i == -1)
 	{
-		printf("Syntax error in redirs (put_spaces())\n");
+		ft_putstr_fd("Syntax error in redirs (put_spaces())\n", STDERR_FILENO);
 		ft_protect(3, str, ret_str, NULL);
 		return (-1);
 	}

@@ -45,3 +45,5 @@ check multiple pipes
 trunc tabs and new lines
 exit with args segfault
 echo '$='
+-----all above should be fixed-------
+fix the |cmd|

@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 11:33:35 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/18 16:34:38 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:57:18 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ int			word_count(char *str, char c);
 char		*skip_char(char *str, char c);
 char		*copy_word(char *str, char c);
 char		*skip_word(char *str, char c);
+char		*rem_nl_tab(char *str);
 
 #endif

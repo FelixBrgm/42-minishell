@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 15:22:09 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/17 16:47:19 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:58:16 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,33 @@ int	word_count(char *str, char c)
 		str = skip_word(str, c);
 	}
 	return (count);
+}
+
+//frees the input str
+char	*rem_nl_tab(char *str)
+{
+	int		i;
+	int		j;
+	int		size;
+	char	*ret_str;
+
+	i = 0;
+	j = 0;
+	size = 0;
+	while (str != NULL && str[i] != '\0')
+	{
+		if (str[i] != '\n' && str[i] != '\t')
+			size++;
+		i++;
+	}
+	ret_str = ft_calloc(size + 1, sizeof(char));
+	i = 0;
+	while (str != NULL && str[i] != '\0')
+	{
+		if (str[i] != '\n' && str[i] != '\t')
+			ret_str[j++] = str[i];
+		i++;
+	}
+	free(str);
+	return (ret_str);
 }

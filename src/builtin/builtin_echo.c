@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 17:08:56 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/19 14:50:51 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:43:26 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	builtin_echo(t_child *child)
 	}
 	builtin_echo_print_words(&child->cmd[j]);
 	if (n == 0)
-		printf("\n");
+		ft_printf("\n");
 	if (close(STDOUT_FILENO) < 0)
 		return (1);
 	return (0);
@@ -58,8 +58,12 @@ static int	builtin_echo_print_words(char **text)
 			ft_printf("%c", text[j][i]);
 			i++;
 		}
+		// printf("HEY\n");
 		if (text[j + 1])
-			printf(" ");
+		{
+			// printf("PRINTING SPACE\n");
+			ft_printf(" ");
+		}
 		j++;
 	}
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dredir_out.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 19:16:40 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/16 20:28:29 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:32:12 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char	*rem_dredir_out(char *str)
 	char	*ret;
 	int		i;
 
+	str = rem_nl_tab(str);
 	tmp = split_mod(str, ' ');
 	i = 0;
 	ret = NULL;

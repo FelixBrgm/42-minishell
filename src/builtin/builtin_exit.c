@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 19:20:53 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/19 16:15:09 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:54:30 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	builtin_exit(t_child *child, t_global *global)
 	else if (ft_2ptrlen((void **)child->cmd) == 2)
 		helper(global, child);
 	else
-		printf("exit\nexit: too many arguments\n");
+		ft_putstr_fd("exit\nexit: too many arguments\n", STDERR_FILENO);
 	close(STDOUT_FILENO);
 	return (1);
 }
@@ -47,7 +47,7 @@ void	helper(t_global *global, t_child *child)
 	printf("exit\n");
 	if (is_only_digits(child->cmd[1]))
 	{
-		printf("bash: exit: a: numeric argument required\n");
+		ft_putstr_fd("bash: exit: numeric argument required\n", STDERR_FILENO);
 		exit(255);
 	}
 	close(STDOUT_FILENO);
