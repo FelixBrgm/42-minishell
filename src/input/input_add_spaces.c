@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   input_add_spaces.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:21:55 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/16 21:35:06 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/18 18:24:01 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "input.h"
 
 //Returns the len of a string after adding spaces before and after redirections
-int	len_after_adding_spaces(char *str)
+int	len_after_adding_spaces(const char *str)
 {
 	int	i;
 	int	len;
@@ -24,8 +24,8 @@ int	len_after_adding_spaces(char *str)
 	{
 		if (is_valid_redir(str, i) > -1)
 		{
-			len += is_valid_redir(str, i) + 2;
-			i += len - i - 2;
+			len += is_valid_redir(str, i) + 3;
+			i += is_valid_redir(str, i) + 1;
 		}
 		i++;
 		len++;
@@ -111,7 +111,7 @@ char	*add_spaces(char *str)
 
 	i = 0;
 	j = 0;
-	ret_str = ft_calloc((len_after_adding_spaces(str) + 1), sizeof(char));
+	ret_str = ft_calloc(len_after_adding_spaces(str) + 1, sizeof(char));
 	if (ret_str == NULL)
 	{
 		free(str);
@@ -122,11 +122,9 @@ char	*add_spaces(char *str)
 		copy_skip_squotes(ret_str, str, &i, &j);
 		copy_skip_dquotes(ret_str, str, &i, &j);
 		if (put_spaces(ret_str, str, &i, &j) == -1)
-		{
-			free(ret_str);
 			return (NULL);
-		}
-		ret_str[j++] = str[i++];
+		if (str[i] != '\0')
+			ret_str[j++] = str[i++];
 	}
 	free(str);
 	return (ret_str);

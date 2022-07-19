@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:15:45 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/17 13:45:50 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/18 15:52:57 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@
 # include <limits.h>
 # include <signal.h>
 # include <termios.h>
-# include "readline.h"
-# include "history.h"
+# include "readline/readline.h"
+# include "readline/history.h"
 # include <sys/errno.h>
+# include <sys/wait.h>
 
 extern int	g_exit_code;
 

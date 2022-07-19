@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 11:33:35 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/17 17:05:18 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/18 16:34:38 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ void		listadd_front(t_file_node **lst, t_file_node *new_lst);
 // Free
 int			children_free(t_child *head);
 int			global_free(t_global *global);
+int			file_node_free(t_file_node *node);
 
 //utils_redirs
-int			is_valid_redir(char *str, int i);
+int			is_valid_redir(const char *str, int i);
 int			set_redirs_out(char **tmp, t_global *glob);
 int			set_dredir_in(char	**tmp, t_global *global);
 int			set_redir_in(char **tmp, t_global *global);

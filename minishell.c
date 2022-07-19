@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:14:50 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/17 17:03:02 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/18 15:44:09 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,10 @@ int	main(int argc, char **argv, char **env)
 		{
 			open_files(global.app_file_list_head, global.trunc_file_list_head);
 			children_exec(&global);
-			children_free(global.children_head);
 			sigaction(SIGINT, &sa, NULL);
+			children_free(global.children_head);
+			file_node_free(global.app_file_list_head);
+			file_node_free(global.trunc_file_list_head);
 			free(global.input);
 		}
 	}

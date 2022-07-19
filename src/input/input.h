@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:23:08 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/17 16:59:20 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/18 16:34:21 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int		input_parse(t_global *global);
 char	*rem_redirs(char *old_input);
 
 //input_add_spaces
-int		is_valid_redir(char *str, int i);
-int		len_with_spaces(char *str);
+int		is_valid_redir(const char *str, int i);
+int		len_with_spaces(const char *str);
 char	*add_spaces(char *str);
 
 //dredir_in

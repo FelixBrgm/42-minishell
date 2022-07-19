@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_redirs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 20:11:58 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/16 22:02:11 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/18 16:34:26 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	redir_out_check(char **tmp, int i, t_global *global);
 //return 1 == double redir
 //return -1 == error
 //return -2 == no redirections
-int	is_valid_redir(char *str, int i)
+int	is_valid_redir(const char *str, int i)
 {
 	if (str[i] == '<')
 	{
@@ -45,10 +45,8 @@ int	is_valid_redir(char *str, int i)
 int	set_redirs_out(char **tmp, t_global *glob)
 {
 	int		i;
-	t_child	*last_child;
 
 	i = 0;
-	last_child = dlistlast(glob->children_head);
 	while (tmp[i] != NULL)
 	{
 		if (redir_out_check(tmp, i, glob) || dredir_out_check(tmp, i, glob))

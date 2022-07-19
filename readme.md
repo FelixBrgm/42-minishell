@@ -30,4 +30,8 @@ INPUT
 	if (!env)
 
 //17.07.2022
-free file lists on each iteration
+free file lists on each iteration - should be fixed now
+
+//18.07.2022
+ft_free_split segfaults - should be fixed
+fix add_spaces - should be fizef
