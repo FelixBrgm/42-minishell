@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 19:20:53 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/19 15:20:42 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:15:09 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ void	helper(t_global *global, t_child *child)
 		exit(255);
 	}
 	close(STDOUT_FILENO);
+	int i = ft_atoi(child->cmd[1]);
 	global_free(global);
-	exit((unsigned int)ft_atoi(child->cmd[1]) % 256);
+	exit(i);
 }
 
 int	is_only_digits(char *str)

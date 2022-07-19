@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_parse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:21:55 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/18 16:32:30 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/19 15:46:30 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	input_parse(t_global *global)
 	if (split_input == NULL || set_files(split_input, global)
 		|| split_input[0] == NULL)
 	{
-		printf("Syntax error \n");
+		// printf("Syntax error \n");
+		ft_putendl_fd("Syntax error", STDERR_FILENO);
 		return (1);
 	}
 	split_input = input_clear_redirs(split_input);
