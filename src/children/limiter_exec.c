@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 15:36:11 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/19 16:35:21 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:39:31 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 char	*set_vars(char *str, char **env);
 int		open_tmp(void);
+void	print_res(char *res);
 
 int	limiter_exec(t_child *child, char **env)
 {

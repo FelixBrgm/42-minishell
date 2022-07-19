@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 19:20:53 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/19 16:31:16 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:40:15 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	helper(t_global *global, t_child *child)
 		exit(255);
 	}
 	close(STDOUT_FILENO);
-	ft_atoi(child->cmd[1]);
+	i = ft_atoi(child->cmd[1]);
 	global_free(global);
 	exit(i);
 }
