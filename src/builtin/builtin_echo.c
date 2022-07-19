@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 17:08:56 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/19 17:43:26 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/19 18:01:47 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,8 @@ static int	builtin_echo_print_words(char **text)
 			ft_printf("%c", text[j][i]);
 			i++;
 		}
-		// printf("HEY\n");
 		if (text[j + 1])
-		{
-			// printf("PRINTING SPACE\n");
 			ft_printf(" ");
-		}
 		j++;
 	}
 	return (0);

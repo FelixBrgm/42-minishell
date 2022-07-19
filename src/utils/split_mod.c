@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 17:38:23 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/19 17:57:29 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/19 18:01:37 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ char	**split_mod(char *str, char c)
 	ret[i] = NULL;
 	return (ret);
 }
-
 
 //------------------DEBUG AND TESTING-----------------
 
