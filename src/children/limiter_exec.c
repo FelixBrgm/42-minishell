@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   limiter_exec.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 15:36:11 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/19 16:15:12 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:35:21 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ int	limiter_exec(t_child *child, char **env)
 	char	*res;
 	char	*tmp2;
 	char	*read_line;
-	int		fd;
 
-	read_line = readline("here_doc> ");
 	res = NULL;
+	read_line = readline("here_doc> ");
 	while (read_line && ft_strncmp(read_line, child->limiter.lim,
 			ft_strlen(child->limiter.lim) + 1) != 0)
 	{
@@ -38,9 +37,7 @@ int	limiter_exec(t_child *child, char **env)
 		free(read_line);
 		read_line = readline("here_doc> ");
 	}
-	fd = open_tmp();
-	ft_putstr_fd(res, fd);
-	close(fd);
+	print_res(res);
 	ft_protect(3, read_line, res, NULL);
 	return (0);
 }
@@ -54,4 +51,13 @@ int	open_tmp(void)
 	if (fd < 0)
 		return (-1);
 	return (fd);
+}
+
+void	print_res(char *res)
+{
+	int	fd;
+
+	fd = open_tmp();
+	ft_putstr_fd(res, fd);
+	close(fd);
 }

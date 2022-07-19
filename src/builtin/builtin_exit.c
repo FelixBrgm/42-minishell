@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 19:20:53 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/19 16:15:09 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:31:16 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	builtin_exit(t_child *child, t_global *global)
 
 void	helper(t_global *global, t_child *child)
 {
+	int	i;
+
 	printf("exit\n");
 	if (is_only_digits(child->cmd[1]))
 	{
@@ -51,7 +53,7 @@ void	helper(t_global *global, t_child *child)
 		exit(255);
 	}
 	close(STDOUT_FILENO);
-	int i = ft_atoi(child->cmd[1]);
+	ft_atoi(child->cmd[1]);
 	global_free(global);
 	exit(i);
 }
