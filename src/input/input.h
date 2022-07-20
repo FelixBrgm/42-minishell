@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:23:08 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/18 16:34:21 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:29:43 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_set_vars
 
 int		input_parse(t_global *global);
 char	*rem_redirs(char *old_input);
+char	*rem_nl_tab(char *str);
 
 //input_add_spaces
 int		is_valid_redir(const char *str, int i);

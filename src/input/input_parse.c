@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_parse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:21:55 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/19 16:35:40 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/19 18:01:17 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int		count_and_init_children(t_global *global, char **split_input);
 int		get_count_children(t_global *global, char **split_input);
 void	print_files(t_file_node *list);
+void	print_children(t_child *list);
+void	print_split(char **str);
 
 int	input_parse(t_global *global)
 {
@@ -25,6 +27,7 @@ int	input_parse(t_global *global)
 	global->trunc_file_list_head = NULL;
 	global->app_file_list_head = NULL;
 	input_copy = add_spaces(global->input);
+	input_copy = rem_nl_tab(input_copy);
 	global->input = ft_strdup(input_copy);
 	free(input_copy);
 	split_input = split_mod(global->input, '|');
@@ -32,7 +35,7 @@ int	input_parse(t_global *global)
 	if (split_input == NULL || set_files(split_input, global)
 		|| split_input[0] == NULL)
 	{
-		ft_putendl_fd("Syntax error", STDERR_FILENO);
+		ft_putstr_fd("Syntax error\n", STDERR_FILENO);
 		return (1);
 	}
 	split_input = input_clear_redirs(split_input);
@@ -76,7 +79,7 @@ char	**split_dup(char **str)
 // 	i = 0;
 // 	if (str == NULL)
 // 	{
-// 		printf("%s\n", str);
+// 		printf("(null)\n");
 // 		return ;
 // 	}
 // 	while (str[i] != NULL)

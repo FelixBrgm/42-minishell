@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_cmds.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:22:37 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/16 20:26:58 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:33:00 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	clear_and_set_cmds(char **split_input, t_global *global)
 	{
 		if (tmp->limiter.lim == NULL)
 		{
+			split_input[i] = rem_nl_tab(split_input[i]);
 			tmp->cmd = split_mod(split_input[i], ' ');
 			tmp->cmd = input_expand(tmp->cmd, global->env);
 			tmp->cmd = input_rem_quotes(tmp->cmd);
