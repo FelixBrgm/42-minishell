@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_expand_rem_redir.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:37:16 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/16 20:28:36 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/20 18:01:05 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

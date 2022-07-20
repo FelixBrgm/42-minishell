@@ -1,5 +1,5 @@
 AR := ar rcs
-CFLAGS = -Wall -Wextra -Werror 
+# CFLAGS = -Wall -Wextra -Werror 
 
 NAME = libs.a
 

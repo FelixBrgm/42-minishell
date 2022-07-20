@@ -2,7 +2,7 @@ AR := ar rcs
 NAME = minishell
 CC = cc
 RM = rm -rf
-CFLAGS = -iquote /Users/$(USER)/goinfre/.brew/opt/readline/include -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -iquote /Users/$(USER)/goinfre/.brew/opt/readline/include -Wall -Wextra -Werror -fsanitize=address -g
 
 
 SRC := src/
