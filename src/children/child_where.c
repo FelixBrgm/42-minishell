@@ -6,7 +6,7 @@
 /*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 11:44:43 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/16 19:36:11 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/20 16:33:09 by fbruggem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*child_where( char *cmd, char **env)
 		i++;
 	}
 	ft_free_split(paths);
-	return (NULL);
+	return (cmd);
 }
 
 char	**where_get_paths(char **env)
