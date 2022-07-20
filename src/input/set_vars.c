@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 15:38:49 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/19 17:51:30 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/20 16:25:16 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,16 @@ char	*get_var_name(char *str)
 	while (str[i] != '\0' && str[i] != '\'' && str[i] != '\"')
 	{
 		if (str[i] == ' ' || str[i] == '|' || str[i] == '<'
-			|| str[i] == '>' || str[i] == '\\')
+			|| str[i] == '>' || str[i] == '\\' || str[i] == '$')
 		{
 			break ;
 		}
 		i++;
 	}
 	var_name = ft_strdup_i(str, i);
-	if (var_name == NULL || var_name[0] == '\0')
+	if (var_name == NULL )
+		return (NULL);
+	if (var_name[0] == '\0')
 	{
 		free(var_name);
 		return (NULL);
@@ -76,9 +78,17 @@ int	get_expanded_len(char *str, char **env)
 		len_helper(str, &vars, env);
 		vars.i++;
 		if (str[vars.i] == '\'' && vars.quotes == 2)
+		{
+			vars.i++;
+			vars.j++;
 			vars.quotes = 0;
+		}
 		if (str[vars.i] == '\"' && vars.quotes == 1)
+		{
+			vars.i++;
+			vars.j++;
 			vars.quotes = 0;
+		}
 	}
 	return (vars.j);
 }
@@ -122,7 +132,7 @@ char	*set_vars(char *str, char **env)
 	vars.j = 0;
 	vars.quotes = 0;
 	vars.var_name = NULL;
-	vars.ret_str = malloc(get_expanded_len(str, env) + 1);
+	vars.ret_str = ft_calloc(get_expanded_len(str, env) + 1, sizeof(char));
 	while (str != NULL && str[vars.i] != '\0')
 	{
 		set_helper(str, env, &vars);
@@ -137,7 +147,6 @@ char	*set_vars(char *str, char **env)
 			vars.quotes = 0;
 		}
 	}
-	vars.ret_str[vars.j] = '\0';
 	return (vars.ret_str);
 }
 
