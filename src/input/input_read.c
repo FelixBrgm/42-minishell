@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:22:56 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/19 18:08:01 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/20 15:49:38 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,7 @@ int	input_read(t_global *global)
 	if (isatty(0))
 		global->input = readline("minishell-6.9 ");
 	else
-	{
 		global->input = get_next_line(0);
-		// if (global->input
-		// 	&& global->input[ft_strlen(global->input) - 1] == '\n')
-		// 	global->input[ft_strlen(global->input) - 1] = '\0';
-	}
 	if (ft_strlen(global->input) > 0)
 		add_history(global->input);
 	else
