@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:15:45 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/18 15:52:57 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/21 12:53:18 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ typedef struct s_child
 
 typedef struct s_global
 {
-	int				interactive_mode;
 	int				ex_status;
 	char			**env;
 	struct termios	old_termios;
@@ -66,7 +65,6 @@ typedef struct s_global
 	t_child			*children_head;
 	t_file_node		*trunc_file_list_head;
 	t_file_node		*app_file_list_head;
-	int				this_pid;
 }				t_global;
 
 int		set_to_default(t_global	*global, char **env);
@@ -80,6 +78,6 @@ void	children_exec(t_global *global);
 // Built In
 int		builtin_exec(t_child *child, t_global *global);
 
-void	handle_child_sig(int sig);
+void	handle_sigint(int sig);
 
 #endif

@@ -6,15 +6,18 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 14:22:56 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/20 15:49:38 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/21 12:52:54 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "input.h"
 
+void	reset_global(t_global *global);
+
 //(line 19) check if just a new line
 int	input_read(t_global *global)
 {
+	reset_global(global);
 	if (isatty(0))
 		global->input = readline("minishell-6.9 ");
 	else
@@ -34,4 +37,12 @@ int	input_read(t_global *global)
 	if (input_parse(global) == 1)
 		return (1);
 	return (0);
+}
+
+void	reset_global(t_global *global)
+{
+	global->app_file_list_head = NULL;
+	global->trunc_file_list_head = NULL;
+	global->input = NULL;
+	global->children_head = NULL;
 }

@@ -2,7 +2,8 @@ AR := ar rcs
 NAME = minishell
 CC = cc
 RM = rm -rf
-CFLAGS = -iquote /Users/$(USER)/goinfre/.brew/opt/readline/include -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = -iquote /Users/$(USER)/goinfre/.brew/opt/readline/include -Wall -Wextra -Werror
+# CFLAGS = -Wall -Wextra -Werror
 
 
 SRC := src/
@@ -14,7 +15,7 @@ UTILS := utils/
 
 # INPUT
 INPUTCFILES := input_read.c input_parse.c dredir_in.c dredir_out.c redir_in.c redir_out.c set_cmds.c \
-				input_add_spaces.c set_vars.c input_rem_quotes.c input_expand_rem_redir.c set_files.c
+				input_add_spaces.c set_vars.c input_rem_quotes.c input_expand_rem_redir.c set_files.c set_vars_here_doc.c
 INPUTCFILES := $(addprefix $(INPUT), $(INPUTCFILES))
 INPUTCFILES := $(addprefix $(SRC), $(INPUTCFILES))
 
@@ -46,7 +47,8 @@ all: $(NAME)
 
 $(NAME): $(OFILES)
 	make -C libs
-	$(CC) $(CFLAGS) $(OFILES) libs/libs.a -fsanitize=address -g -L/Users/$(USER)/goinfre/.brew/opt/readline/lib -iquote /Users/$(USER)/goinfre/.brew/opt/readline/include/ -lreadline -o $(NAME)
+	$(CC) $(CFLAGS) $(OFILES) libs/libs.a -L/Users/$(USER)/goinfre/.brew/opt/readline/lib -iquote /Users/$(USER)/goinfre/.brew/opt/readline/include/ -lreadline -o $(NAME)
+# $(CC) $(CFLAGS) $(OFILES) libs/libs.a  -lreadline -o $(NAME)
 
 clean: 
 	$(RM) $(OFILES)

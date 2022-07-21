@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   children_exec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:26:52 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/16 20:48:35 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/21 11:16:07 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	single_cmd(t_global *global, t_child *tmp, int fd_cur0)
 		limiter_exec(tmp, global->env);
 	else if (cmd_count(global) <= 1)
 	{
+		if (tmp->cmd == NULL || tmp->cmd[0] == NULL)
+			return ;
 		if (builtin_is_cmd(tmp->cmd, global->env))
 			exec_child_single_builtin(global, tmp);
 		else
@@ -58,6 +60,8 @@ void	single_cmd(t_global *global, t_child *tmp, int fd_cur0)
 
 void	multiple_cmd(t_global *global, t_child *tmp, int fd_c[], int fd_tmp[])
 {
+	if (tmp->cmd == NULL || tmp->cmd[0] == NULL)
+		return ;
 	if (tmp->limiter.lim == NULL
 		&& tmp->next != NULL && cmd_count(global) > 1)
 	{

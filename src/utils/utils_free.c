@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbruggem <fbruggem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 18:15:12 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/19 16:37:00 by fbruggem         ###   ########.fr       */
+/*   Updated: 2022/07/21 13:32:16 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	children_free(t_child *head)
 {
 	t_child	*temp;
 
-	while (head)
+	while (head != NULL)
 	{
 		temp = head->next;
 		if (head->cmd)

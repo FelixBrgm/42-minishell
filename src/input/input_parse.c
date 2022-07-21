@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:21:55 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/19 18:01:17 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/21 13:00:02 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	input_parse(t_global *global)
 		|| split_input[0] == NULL)
 	{
 		ft_putstr_fd("Syntax error\n", STDERR_FILENO);
+		ft_free_split(split_input);
 		return (1);
 	}
 	split_input = input_clear_redirs(split_input);

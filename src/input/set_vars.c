@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 15:38:49 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/20 16:25:16 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/21 11:47:47 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,8 @@ char	*get_var_name(char *str)
 //vars->j = len
 void	len_helper(char *str, t_set_vars *vars, char **env)
 {
-	char	*var_name;
+	char	*tmp;
 
-	var_name = NULL;
 	if (str[vars->i] == '\"' && ft_strchr(&str[vars->i + 1], '\"') != 0
 		&& vars->quotes == 0)
 	{
@@ -56,10 +55,13 @@ void	len_helper(char *str, t_set_vars *vars, char **env)
 	}
 	if (str[vars->i] == '$' && (vars->quotes == 0 || vars->quotes == 1))
 	{
-		var_name = get_var_name(&(str[(vars->i) + 1]));
-		vars->j += ft_strlen(env_get_value(env, var_name));
-		vars->i += ft_strlen(var_name);
-		free(var_name);
+		vars->var_name = get_var_name(&(str[(vars->i) + 1]));
+		tmp = env_get_value(env, vars->var_name);
+		vars->j += ft_strlen(tmp);
+		if (str[vars->i + 1] == '?')
+			free(tmp);
+		vars->i += ft_strlen(vars->var_name);
+		free(vars->var_name);
 	}
 	else
 		vars->j++;
@@ -95,20 +97,21 @@ int	get_expanded_len(char *str, char **env)
 
 void	set_helper(char *str, char **env, t_set_vars *vars)
 {
+	char	*tmp;
+
 	if (str[vars->i] == '\"' && ft_strchr(&str[vars->i + 1], '\"') != 0
 		&& vars->quotes == 0)
-	{
 		vars->quotes = 1;
-	}
 	if (str[vars->i] == '\'' && ft_strchr(&str[vars->i + 1], '\'') != 0
 		&& vars->quotes == 0)
-	{
 		vars->quotes = 2;
-	}
 	if (str[vars->i] == '$' && (vars->quotes == 0 || vars->quotes == 1))
 	{
 		vars->var_name = get_var_name(&(str[vars->i + 1]));
-		vars->value = ft_strdup(env_get_value(env, vars->var_name));
+		tmp = env_get_value(env, vars->var_name);
+		vars->value = ft_strdup(tmp);
+		if (str[vars->i + 1] == '?')
+			free(tmp);
 		ft_strlcpy(&(vars->ret_str[vars->j]), vars->value,
 			ft_strlen(vars->value) + 1);
 		vars->j += ft_strlen(vars->value);
