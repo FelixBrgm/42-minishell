@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:21:55 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/19 17:10:38 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/22 23:39:50 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	len_after_adding_spaces(const char *str)
 	{
 		if (is_valid_redir(str, i) > -1)
 		{
-			len += is_valid_redir(str, i) + 3;
-			i += is_valid_redir(str, i) + 1;
+			len += is_valid_redir(str, i) + 2;
+			i += is_valid_redir(str, i);
 		}
 		i++;
 		len++;

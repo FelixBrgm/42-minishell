@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:21:55 by fbruggem          #+#    #+#             */
-/*   Updated: 2022/07/21 13:00:02 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/22 23:38:49 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	input_parse(t_global *global)
 		|| split_input[0] == NULL)
 	{
 		ft_putstr_fd("Syntax error\n", STDERR_FILENO);
+		// print_children(global->children_head);
 		ft_free_split(split_input);
 		return (1);
 	}
@@ -73,46 +74,46 @@ char	**split_dup(char **str)
 	return (ret);
 }
 
-// void	print_split(char **str)
-// {
-// 	int	i;
+void	print_split(char **str)
+{
+	int	i;
 
-// 	i = 0;
-// 	if (str == NULL)
-// 	{
-// 		printf("(null)\n");
-// 		return ;
-// 	}
-// 	while (str[i] != NULL)
-// 	{
-// 		if (i != 0)
-// 			printf(" ");
-// 		printf("~%s~", str[i]);
-// 		i++;
-// 	}
-// 	printf("\n");
-// }
+	i = 0;
+	if (str == NULL)
+	{
+		printf("(null)\n");
+		return ;
+	}
+	while (str[i] != NULL)
+	{
+		if (i != 0)
+			printf(" ");
+		printf("~%s~", str[i]);
+		i++;
+	}
+	printf("\n");
+}
 
-// void	print_children(t_child *list)
-// {
-// 	int i = 0;
-// 	while (list != NULL)
-// 	{
-// 		printf("CHILD index %d \n", i);
-// 		printf("cmd:\t");
-// 		print_split(list->cmd);
-// 		printf("fd_in:\t%d\n", list->fd_in);
-// 		printf("fd_out:\t%d\n", list->fd_out);
-// 		printf("file_in:\t%s\n", list->file_in);
-// 		printf("file_out_trunc:\t%s\n", list->file_out_trunc);
-// 		printf("file_out_app:\t%s\n", list->file_out_app);
-// 		printf("limiter.lim:\t%s\n", list->limiter.lim);
-// 		printf("limiter.expand:\t%d\n", list->limiter.expand);
-// 		printf("-----------------------------------------\n");
-// 		list = list->next;
-// 		i++;
-// 	}
-// }
+void	print_children(t_child *list)
+{
+	int i = 0;
+	while (list != NULL)
+	{
+		printf("CHILD index %d \n", i);
+		printf("cmd:\t");
+		print_split(list->cmd);
+		printf("fd_in:\t%d\n", list->fd_in);
+		printf("fd_out:\t%d\n", list->fd_out);
+		printf("file_in:\t%s\n", list->file_in);
+		printf("file_out_trunc:\t%s\n", list->file_out_trunc);
+		printf("file_out_app:\t%s\n", list->file_out_app);
+		printf("limiter.lim:\t%s\n", list->limiter.lim);
+		printf("limiter.expand:\t%d\n", list->limiter.expand);
+		printf("-----------------------------------------\n");
+		list = list->next;
+		i++;
+	}
+}
 
 // void	print_files(t_file_node *list)
 // {

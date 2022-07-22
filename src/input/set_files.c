@@ -6,7 +6,7 @@
 /*   By: dhamdiev <dhamdiev@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:41:07 by dhamdiev          #+#    #+#             */
-/*   Updated: 2022/07/19 17:34:10 by dhamdiev         ###   ########.fr       */
+/*   Updated: 2022/07/22 23:38:35 by dhamdiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int	dredir_out_check(char **tmp, int i, t_global *global)
 			free(last_child->file_out_trunc);
 			last_child->file_out_trunc = NULL;
 		}
-		if (last_child->file_out_app != NULL)
-			free(last_child->file_out_app);
 		if (tmp[i + 1] == NULL)
 			return (1);
+		if (last_child->file_out_app != NULL)
+			free(last_child->file_out_app);
 		file = rem_quotes(tmp[i + 1]);
 		last_child->file_out_app = ft_strdup(file);
 		listadd_back(&global->app_file_list_head, listnew(file));
@@ -49,10 +49,10 @@ int	redir_out_check(char **tmp, int i, t_global *global)
 			free(last_child->file_out_app);
 			last_child->file_out_app = NULL;
 		}
-		if (last_child->file_out_trunc != NULL)
-			free(last_child->file_out_trunc);
 		if (tmp[i + 1] == NULL)
 			return (1);
+		if (last_child->file_out_trunc != NULL)
+			free(last_child->file_out_trunc);
 		file = rem_quotes(tmp[i + 1]);
 		last_child->file_out_trunc = ft_strdup(file);
 		listadd_back(&global->trunc_file_list_head, listnew(file));

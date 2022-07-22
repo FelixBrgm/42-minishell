@@ -3,7 +3,6 @@ NAME = minishell
 CC = cc
 RM = rm -rf
 CFLAGS = -iquote /Users/$(USER)/goinfre/.brew/opt/readline/include -Wall -Wextra -Werror
-# CFLAGS = -Wall -Wextra -Werror
 
 
 SRC := src/
@@ -48,7 +47,6 @@ all: $(NAME)
 $(NAME): $(OFILES)
 	make -C libs
 	$(CC) $(CFLAGS) $(OFILES) libs/libs.a -L/Users/$(USER)/goinfre/.brew/opt/readline/lib -iquote /Users/$(USER)/goinfre/.brew/opt/readline/include/ -lreadline -o $(NAME)
-# $(CC) $(CFLAGS) $(OFILES) libs/libs.a  -lreadline -o $(NAME)
 
 clean: 
 	$(RM) $(OFILES)
